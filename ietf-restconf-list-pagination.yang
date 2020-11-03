@@ -1,24 +1,23 @@
 module ietf-restconf-list-pagination {
-  namespace "urn:ietf:params:xml:ns:yang:ietf-restconf-list-pagination";
+  namespace
+    "urn:ietf:params:xml:ns:yang:ietf-restconf-list-pagination";
   prefix rlpg;
 
   import ietf-restconf {
     prefix rc;
+    reference "RFC 8040: RESTCONF Protocol";
   }
 
   organization
     "IETF NETCONF (Network Configuration) Working Group";
+
   contact
     "WG Web:   <http://tools.ietf.org/wg/netconf/>
      WG List:  <mailto:netconf@ietf.org>";
 
   description
-    "This module contains conceptual YANG specifications
-     for the RESTCONF Collection resource type.
-     Note that the YANG definitions within this module do not
-     represent configuration data of any kind.
-     The YANG grouping statements provide a normative syntax
-     for XML and JSON message encoding purposes.
+    "This module is used be RESTCONF servers to indicate that
+     they support pagination on 'list' and 'leaf-list' resources.
 
      Copyright (c) 2015 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
@@ -33,25 +32,12 @@ module ietf-restconf-list-pagination {
      This version of this YANG module is part of RFC XXXX; see
      the RFC itself for full legal notices.";
 
-  revision 2015-01-30 {
+  revision YYYY-MM-DD {
     description
       "Initial revision.";
     reference
-      "RFC XXXX: RESTCONF Collection Resource.";
-  }
-  rc:yang-data yang-collection {
-    uses collection;
+      "RFC XXXX: RESTCONF Extensions to Support List Pagination";
   }
 
-  grouping collection {
-    description
-      "Conceptual container representing the
-       yang-collection resource type.";
-    container yang-collection {
-      description
-        "Container representing the yang-collection
-         resource type.";
-    }
-  }
 }
 

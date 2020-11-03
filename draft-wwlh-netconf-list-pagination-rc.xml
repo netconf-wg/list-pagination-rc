@@ -33,7 +33,7 @@
       </address>
     </author>
     <author fullname="Qin Wu" initials="Q." surname="Wu">
-      <organization>Huawei</organization>
+      <organization>Huawei Technologies</organization>
       <address>
         <postal>
           <street>101 Software Avenue, Yuhua District</street>
@@ -280,10 +280,10 @@
       </section>
     </section> <!-- Updates to RFC 8040 -->
 
-    <section title="YANG Module for List Pagination">
-      <t>The "ietf-restconf-list-pagination" module defines conceptual
-      definitions within groupings, which are not meant to be implemented as
-      datastore contents by a server.</t>
+    <section title="The &quot;ietf-restconf-list-pagination&quot; Module">
+      <t>The "ietf-restconf-list-pagination" module is currently only used
+        by servers to indicate that they support pagination on YANG "list"
+        and "leaf-list" nodes.</t>
       <figure>
         <preamble>&lt;CODE BEGINS&gt; file "ietf-restconf-list-pagination@YYYY-MM-DD.yang"</preamble>
         <artwork><![CDATA[
@@ -475,10 +475,12 @@ Index           Capability Identifier
       <t>FIXME</t>
     </section>
     <section title="Example Queries">
-      <section title="No Query Parameter">
-        <t>Client requests all list entries:</t>
-        <section title="XML">
-          <t>Client requests an XML-based Response:</t>
+      <section title="No Query Parameters">
+        <t>Client requests all list entries.  This example
+          is also used to illustrate the difference between
+          XML and JSON based encodings.</t>
+        <section title="XML Encoding">
+          <t>Request:</t>
           <t>
             <figure>
               <artwork><![CDATA[
@@ -486,7 +488,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc.xml)
 ]]></artwork>
             </figure>
           </t>
-          <t>Response from the RESTCONF server:</t>
+          <t>Response:</t>
           <t>
             <figure>
               <artwork><![CDATA[
@@ -495,8 +497,8 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc-reply.xml)
             </figure>
           </t>
         </section>
-        <section title="JSON">
-          <t>Client requests a JSON-based Response:</t>
+        <section title="JSON Encoding">
+          <t>Request:</t>
           <t>
             <figure>
               <artwork><![CDATA[
@@ -504,7 +506,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc.json)
 ]]></artwork>
             </figure>
           </t>
-          <t>Response from the RESTCONF server:</t>
+          <t>Response:</t>
           <t>
             <figure>
               <artwork><![CDATA[
