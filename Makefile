@@ -24,7 +24,6 @@ next_ver ?= 00
 else
 next_ver ?= $(shell printf "%.2d" $$((1$(current_ver)-99)))
 endif
-next_ver = 01
 next := $(draft)-$(next_ver)
 
 .PHONY: latest submit clean
@@ -54,10 +53,6 @@ endif
 $(next).xml: $(draft).xml
 	sed -e"s/$(basename $<)-latest/$(basename $@)/" -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" $< > $@
 	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ietf-restconf-list-pagination.yang > ietf-restconf-list-pagination\@$(shell date +%Y-%m-%d).yang
-	#sed -e"s/2019-03-07/$(shell date +%Y-%m-%d)/" ../../netmod-wg/yang-data-ext/ietf-yang-structure-ext.yang > refs/ietf-yang-structure-ext\@$(shell date +%Y-%m-%d).yang
-	#sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ../zero-touch/ietf-sztp-bootstrap-server.yang > refs/ietf-sztp-bootstrap-server\@$(shell date +%Y-%m-%d).yang
-	#sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ../crypto-types/ietf-crypto-types.yang > refs/ietf-crypto-types\@$(shell date +%Y-%m-%d).yang
-	#sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ../keystore/ietf-keystore.yang > refs/ietf-keystore\@$(shell date +%Y-%m-%d).yang
 	#cd refs && ./validate-all.sh && ./gen-trees.sh && cd ..
 	./.insert-figures.sh $@ > tmp && mv tmp $@
 	@rm -f refs/*-tree*.txt
@@ -82,7 +77,6 @@ endif
         
 %.html: %.xml
 	$(xml2rfc) --v3 $< -o $@ --html
-	#@$(sed_i) -f .addstyle.sed $@
 
 
 

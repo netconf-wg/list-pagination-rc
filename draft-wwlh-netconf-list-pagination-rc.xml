@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd">
-
 <?rfc toc="yes"?>
 <?rfc symrefs="yes"?>
 <?rfc sortrefs="yes" ?>
@@ -15,10 +14,12 @@
 <?rfc-ext include-index="no" ?>
 <!--<?rfc strict="no"?> -->
 
-<rfc
+<rfc xmlns:xi="http://www.w3.org/2001/XInclude"
      docName="draft-wwlh-netconf-list-pagination-rc-latest"
      category="std"
-     ipr="trust200902">
+     consensus="true"
+     ipr="trust200902"
+     updates="8040">
 
   <front>
     <title abbrev="RESTCONF Pagination Support">
@@ -31,7 +32,6 @@
         <email>kent+ietf@watsen.net</email>
       </address>
     </author>
-
     <author fullname="Qin Wu" initials="Q." surname="Wu">
       <organization>Huawei</organization>
       <address>
@@ -45,16 +45,14 @@
         <email>bill.wu@huawei.com</email>
       </address>
     </author>
-
     <author fullname="Olof Hagsand" initials="O." surname="Hagsand">
       <organization>Netgate</organization>
       <address>
         <email>olof@hagsand.se</email>
       </address>
     </author>
-
     <author fullname="Hongwei Li" initials="H." surname="Li">
-      <organization>HPE</organization>
+      <organization>Hewlett Packard Enterprise</organization>
       <address>
         <email>flycoolman@gmail.com</email>
       </address>
@@ -68,163 +66,306 @@
       <t>In some circumstance, a server may contain many instances of a
       particular YANG list or leaf-list. Retrieval of the entire list or
       leaf-list at once can be extremely inefficient.</t>
-
       <t>Pagination mechanisms are needed to allow a client to iterate through
       a large list, in a manner that is most efficient for the
       application.</t>
-
       <t>This document Updates RFC 8040 to declare "list" and "leaf-list" as
       resource targets for the RESTCONF operations such as GET, POST
       operations.</t>
     </abstract>
   </front>
-
   <middle>
     <section anchor="intro" title="Introduction">
-      <t>There is a need for standard mechanisms to control the filtering,
-      sorting, and retrieval of data from the server. A server may contain
-      many instances of a particular YANG list. Retrieval of the entire list
-      or leaf-list at once can be extremely inefficient.</t>
-
-      <t>Pagination mechanisms are needed to allow a client to iterate through
-      a large list, in a manner that is most efficient for the application.
-      The RPC operation defined in [I-D.wwlh-netconf-list-pagination-nc] can
-      be used by the RESTCONF protocol <xref target="RFC8040"/> if the RESTCONF server
-      implements the "ietf-yang-list-pagination" module
-      [I-D.wwlh-netconf-list-pagination-nc].</t>
-
+      <t>There is a need for standard RESTCONF <xref target="RFC8040"/>
+        mechanisms for interacting with potentially large YANG "list"
+        or "leaf-list" nodes in a manner that is most efficient for the
+        client.</t>
+      <t>This document extends the set of HTTP query parameters defined
+        <relref section="4.8" target="RFC8040"/> to enable pagination over
+        optionally filtered and/or sorted "list" and "leaf-list" entries.</t>
       <t>This document Updates RFC 8040 to declare "list" and "leaf-list" as
-      resource targets for the RESTCONF operations such as GET, POST
-      operations.</t>
-
-    <section title="Terminology">
-      <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
-      NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
-      "MAY", and "OPTIONAL" in this document are to be interpreted as
-      described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/>
-      when, and only when, they appear in all capitals, as shown here.</t>
-
-    <t>The following terms are defined in <xref target="RFC8342"/>
-      <xref target="RFC7950"/> and are not redefined here:</t>
-
-        <t><list style="symbols">
+        valid resource targets for the RESTCONF GET operation.</t>
+      <t>The RPC operation defined in <xref target="I-D.wwlh-netconf-list-pagination-nc"/>
+        may be optionally used if the RESTCONF server implements the
+        "ietf-netconf-list-pagination" module.</t>
+      <section title="Terminology">
+        <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+          NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED",
+          "MAY", and "OPTIONAL" in this document are to be interpreted as
+          described in BCP 14 <xref target="RFC2119"/> <xref target="RFC8174"/>
+          when, and only when, they appear in all capitals, as shown here.</t>
+        <t>The following terms are defined in <xref target="RFC8342"/> and
+          <xref target="RFC7950"/> and are not redefined here:</t>
+        <t>
+          <list style="symbols">
             <t>server</t>
-
             <t>startup configuration datastore</t>
-
             <t>candidate configuration datastore</t>
-
             <t>running configuration datastore</t>
-
             <t>intended configuration datastore</t>
-
             <t>operational state datastore</t>
-
             <t>conventional configuration datastore</t>
-
             <t>datastore schema</t>
-
             <t>RPC operation</t>
-          </list></t>
-
+          </list>
+        </t>
         <t>The following terms are defined in this document as follows:</t>
-
         <t/>
       </section>
     </section>
 
     <!-- intro -->
+    <section title="Updates to RFC8040">
 
-    <section title="RESTCONF Extensions">
-      <t>This section describes the RESTCONF extensions needed to support the
-      Pagination mechanism.</t>
-
-      <section title="RESTCONF Media Type">
-        <t>The following resource type is defined in this document:</t>
-
-        <figure>
-          <artwork>               +-----------------+-----------------------------+
-               | Resource        | Media Type                  |
-               +-----------------+-----------------------------+
-               | YANG-Collection | application/yang-data+xml-list |
-               | YANG-Collection | application/yang-data+xml-json |
-               +-----------------+-----------------------------+
-                           Media Type</artwork>
-        </figure>
+      <section title="Resource Targets">
+        <t>This document extends <relref section="3.5" target="RFC8040"/>
+          to add "list" and "leaf-list" nodes (not just their entries)
+          as data resources for "GET" operations.</t>
       </section>
 
-      <section title="New Resource Target">
-        <t> The "get-list-pagination" RPC operation defined in
-        "ietf-yang-list-pagination" module
-        [I-D.wwlh-netconf-list-pagination-nc] can use the RESTCONF target
-        resource URI to identify the resource that will be filtered and
-        returned. A collection resource contains a set of data resources. It
-        is used to represent all instances or a subset of all instances in a
-        YANG list or leaf-list. A collection resource can be used as target
-        resource and retrieved with the GET method or POST method. The
-        "ietf-restconf-list-pagination" YANG module contains the
-        "yang-collection" yang data template with the "yang-data"extension
-        which specifies the syntax and semantics of a "yang-collection" media
-        type. </t>
+      <section title="Media Type">
+        <t>This document extends <relref section="3.2" target="RFC8040"/>
+          to add a new media type used exclusivily to encode "list" and
+          "leaf-list" nodes for XML.</t>
+        <t>The new media type, "application/yang-data+xml-list", is used
+          to define a pseudo element called "xml-list" that is used to
+          wrap the response set to ensure that a single top-level element
+          is returned for the XML encoding", as required by <relref 
+          section="4.3" target="RFC8040"/>.</t>
+        <t>Note that no special enoding support is required to encode JSON
+          arrays.</t>
+        <t>The "application/yang-data+xml-list" media type is defined in
+        <xref target="media-type"/>.</t>
       </section>
-    </section>
+
+      <section title="Query Parameters">
+        <t>Ths document extends <relref section="4.8" target="RFC8040"/>
+          to add new query parameters "count", "skip", "direction",
+          "sort", and "where".</t>
+        <t>
+          <figure>
+            <artwork><![CDATA[
++-----------+---------+-----------------------------------------+
+| Name      | Methods | Description                             |
++-----------+---------+-----------------------------------------+
+| count     | GET,    | Limits the number of entries returned.  |
+|           | HEAD    | If not specified, the number of entries |
+|           |         | that may be returned in unbounded.      |
+|           |         |                                         |
+| skip      | GET,    | Indicates the number of entries in the  |
+|           | HEAD    | result set that should the skipped over |
+|           |         | when preparing the response.  If not    |
+|           |         | specified, then no entries in the       |
+|           |         | result set are skipped.                 |
+|           |         |                                         |
+| direction | GET,    | Indicates the direction that the result |
+|           | HEAD    | set is to be traversed.  If not         |
+|           |         | specified, then the result set is       |
+|           |         | traversed in the "forward" direction.   |
+|           |         |                                         |
+| sort      | GET,    | Indicates the node name that the result |
+|           | HEAD    | set should be sorted by.  If not        |
+|           |         | specified, then the result set's        |
+|           |         | default order is used, per YANG's       |
+|           |         | "ordered-by" statement.                 |
+|           |         |                                         |
+| where     | GET,    | Specifies a filter expression that      |
+|           | HEAD    | result set entries must match.  If      |
+|           |         | not specified, then no entries are      |
+|           |         | filtered from the result set.           |
+|           |         |                                         |
++-----------+---------+-----------------------------------------+
+]]></artwork>
+          </figure>
+        </t>
+
+        <section title="The &quot;count&quot; Query Parameter">
+          <t>The "count" query parameter limits the number of entries
+            from the working result set (i.e., after the "skip"
+            parameter has been applied) that are returned.</t>
+          <t>The allowed values are positive integers.</t>
+          <t>This parameter is only allowed for the GET method on
+            "list" and "leaf-list" data resources. A "400 Bad Request"
+            status-line is returned if used for other methods or
+            resource types.</t>
+          <t>If this query parameter is not present, the number of
+            entries that may be returned is unbounded.</t>
+          <t>This query parameter MUST be supported for all lists and
+            leaf-lists.</t>
+        </section>
+
+        <section title="The &quot;skip&quot; Query Parameter">
+          <t>The "skip" query parameter indicates the number of entries
+            in the working result set (i.e., after the "direction"
+            parameter has been applied) that should be skipped.</t>
+          <t>The allowed values are positive integers.  If the skip
+            value exceeds the number of entries in the working result
+            set, then "416 Range Not Satisfiable" status-line is returned.</t>
+          <t>This parameter is only allowed for GET method on
+            "list" and "leaf-list" data resources. A "400 Bad Request"
+            status-line is returned if used for other methods or
+            resource types.</t>
+          <t>If this query parameter is not present, the default value
+            is to not skip over any values from the working result set.</t>
+          <t>This query parameter MUST be supported for all lists and
+            leaf-lists.</t>
+        </section>
+
+        <section title="The &quot;direction&quot; Query Parameter">
+          <t>The "direction" query parameter indicates how the entries
+            in the working result set (i.e., after the "sort" parameter
+            has been applied) should be traversed.</t>
+          <t>The allowed values are:</t>
+          <t>
+            <figure>
+              <artwork><![CDATA[
++-----------+-----------------------------------------------------+
+| Value     | Description                                         |
++-----------+-----------------------------------------------------+
+| forwards  | Return entries in the "forward" direction.  Also    |
+|           | known as the "default" or "ascending" direction.    |
+|           |                                                     |
+| backwards | Return entries in the "backward" direction.  Also   |
+|           | known as the "reversed" or "descending" direction.  |
++-----------+-----------------------------------------------------+
+]]></artwork>
+            </figure>
+          </t>
+          <t>This parameter is only allowed for GET method on
+            "list" and "leaf-list" data resources. A "400 Bad Request"
+            status-line is returned if used for other methods or
+            resource types.</t>
+          <t>If this query parameter is not present, the default
+            value is "forward".</t>
+          <t>This query parameter MUST be supported for all lists and
+            leaf-lists.</t>
+        </section>
+
+        <section title="The &quot;sort&quot; Query Parameter">
+          <t>The "sort" query parameter indicates the descendent node
+            that the working result set (i.e., after the "where"
+            parametere has been applied) should be sorted by.</t>
+          <t>The allowed values are node identifiers.  If the 
+            identifier does not exist in the schema, or is in any
+            way optional or conditional in the schema, then a "400
+            Bad Request" status-line is returned.  For "config false"
+            lists, the node idenitfier MUST point to a node having
+            the "indexed" extension statement applied to it
+            (see Node Tags).</t>
+          <t>This parameter is only allowed for GET method on
+            "list" data resources. A "400 Bad Request" status-line
+            is returned if used for other methods or resource types.</t>
+          <t>If this query parameter is not present, then the list
+            or leaf-list's default order is used, per the YANG
+            "ordered-by" statement.</t>
+          <t>This query parameter MUST be supported for all lists.</t>
+        </section>
+
+        <section title="The &quot;where&quot; Query Parameter">
+          <t>The "where" query parameter specifies a filter expression
+            that result set entries must match.</t>
+          <t>The allowed values are Xpath 1.0 expressions that MAY be
+            constrained for "config true" and/or "config false" lists,
+            in general or on an instance-by-instance basis, as described
+            in some TBD section.</t>
+          <t>This parameter is only allowed for GET method on
+            "list" and "leaf-list" data resources. A "400 Bad Request"
+            status-line is returned if used for other methods or
+            resource types.</t>
+          <t>If this query parameter is not present, then no entries
+            are filtered from the working result set.</t>
+          <t>This query parameter MUST be supported for all lists
+            and leaf-lists.</t>
+        </section>
+      </section>
+    </section> <!-- Updates to RFC 8040 -->
 
     <section title="YANG Module for List Pagination">
       <t>The "ietf-restconf-list-pagination" module defines conceptual
       definitions within groupings, which are not meant to be implemented as
       datastore contents by a server.</t>
-
-          <figure>
-            <preamble>&lt;CODE BEGINS&gt; file "ietf-restconf-list-pagination@YYYY-MM-DD.yang"</preamble>
-            <artwork><![CDATA[
+      <figure>
+        <preamble>&lt;CODE BEGINS&gt; file "ietf-restconf-list-pagination@YYYY-MM-DD.yang"</preamble>
+        <artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(ietf-restconf-list-pagination@YYYY-MM-DD.yang)
 ]]></artwork>
-            <postamble>&lt;CODE ENDS&gt;</postamble>
-          </figure>
+        <postamble>&lt;CODE ENDS&gt;</postamble>
+      </figure>
     </section>
 
     <section title="IANA Considerations">
-      <section title='The "IETF XML" Registry'>
-          <t>This document registers one URI in the "ns" subregistry of
+
+      <section title="The &quot;IETF XML&quot; Registry">
+        <t>This document registers one URI in the "ns" subregistry of
             the IETF XML Registry <xref target="RFC3688"/> maintained at
             <eref target="https://www.iana.org/assignments/xml-registry/xml-registry.xhtml#ns"/>.
             Following the format in <xref target="RFC3688"/>, the following
             registration is requested:</t>
-          <t>
-        <figure align="center">
-          <artwork>  URI: urn:ietf:params:xml:ns:yang:ietf-restconf-list-pagination
-  Registrant Contact: The IESG.
-  XML: N/A, the requested URI is an XML namespace.</artwork>
-        </figure>
-          </t>
-        </section>
-        <section title='The "YANG Module Names" Registry'>
-          <t>This document registers one YANG module in the YANG Module
+        <t>
+          <figure align="center">
+            <artwork>
+URI: urn:ietf:params:xml:ns:yang:ietf-restconf-list-pagination
+Registrant Contact: The IESG.
+XML: N/A, the requested URI is an XML namespace.
+          </artwork>
+          </figure>
+        </t>
+      </section>
+
+      <section title="The &quot;YANG Module Names&quot; Registry">
+        <t>This document registers one YANG module in the YANG Module
             Names registry <xref target="RFC6020"/> maintained at
             <eref target="https://www.iana.org/assignments/yang-parameters/yang-parameters.xhtml"/>.
             Following the format defined in <xref target="RFC6020"/>, the below
             registration is requested:</t>
-          <t>
-        <figure align="center">
-          <artwork>  name: ietf-restconf-list-pagination
-  namespace: urn:ietf:params:xml:ns:yang:ietf-restconf-list-pagination
-  prefix: rlpg
-  RFC: xxxx</artwork>
-        </figure>
-      </t>
+        <t>
+          <figure align="center">
+            <artwork>
+name: ietf-restconf-list-pagination
+namespace: urn:ietf:params:xml:ns:yang:ietf-restconf-list-pagination
+prefix: rlpg
+RFC: xxxx
+          </artwork>
+          </figure>
+        </t>
       </section>
 
-      <section title='The "Media Types" Registry'>
-        <t>This document registers two media types in the "application"
-          subregistry of the Media Types registry <xref target="RFC6838"/>
-          <xref target="RFC4855"/> maintained at <eref target="https://www.iana.org/assignments/media-types/media-types.xhtml#application"/>
-            Following the format defined in <xref target="RFC4855"/>, the below
-            registrations are requested:</t>
-        <section title="Media Type &quot;application/yang-collection+xml&quot;">
-          <figure>
-            <artwork>   Type name: application
+      <section title="The &quot;RESTCONF Capability URNs&quot; Registry">
+        <t>This document registers five capabilities in the RESTCONF
+          Capability URNs <xref target="RFC8040"/> maintained at
+          <eref target="https://www.iana.org/assignments/restconf-capability-urns/restconf-capability-urns.xhtml"/>.
+          Following the instructions defined in <relref section="11.4" target="RFC8040"/>,
+          the below registrations are requested:</t>
 
-   Subtype name: yang-collection+xml
+        <t>All of the registrations are to use this document (RFC XXXX)
+          for the "Reference" value.</t>
+        <t>
+          <figure>
+            <artwork><![CDATA[
+Index           Capability Identifier
+---------------------------------------------------------------------
+
+:count       urn:ietf:params:restconf:capability:count:1.0
+:skip        urn:ietf:params:restconf:capability:skip:1.0
+:direction   urn:ietf:params:restconf:capability:direction:1.0
+:sort        urn:ietf:params:restconf:capability:sort:1.0
+:where       urn:ietf:params:restconf:capability:where:1.0
+]]></artwork>
+          </figure>
+        </t>
+      </section>
+
+      <section title="The &quot;Media Types&quot; Registry">
+        <t>This document registers one media type in the "application"
+          subregistry of the Media Types registry <xref target="RFC6838"/>
+          <xref target="RFC4855"/> maintained at <eref target="https://www.iana.org/assignments/media-types/media-types.xhtml#application"/>.
+            Following the format defined in <xref target="RFC4855"/>, the below
+            registration is requested:</t>
+        <section title="Media Type &quot;application/yang-data+xml-list&quot;" anchor="media-type">
+          <figure>
+            <artwork>Type name: application
+
+   Subtype name: yang-data+xml-list
 
    Required parameters: None
 
@@ -283,70 +424,8 @@ INSERT_TEXT_FROM_FILE(ietf-restconf-list-pagination@YYYY-MM-DD.yang)
 </artwork>
           </figure>
         </section>
-
-        <section title="Media Type &quot;application/yang-data+xml-list&quot;">
-          <figure>
-            <artwork>   Type name: application
-
-   Subtype name: yang-collection+json
-
-   Required parameters: None
-
-   Optional parameters: None
-
-   Encoding considerations: 8-bit
-      The "utf-8" charset is always used for this type.
-      Each conceptual YANG data node is encoded according to the
-      XML Encoding Rules and Canonical Format for the specific
-      YANG data node type defined in RFC 7950.
-
-   Security considerations: Security considerations related
-      to the generation and consumption of RESTCONF messages
-      are discussed in Section 5 of RFC 8072.
-      Additional security considerations are specific to the
-      semantics of particular YANG data models.  Each YANG module
-      is expected to specify security considerations for the
-      YANG data defined in that module.
-
-   Interoperability considerations: RFC 8072 specifies the format
-      of conforming messages and the interpretation thereof.
-
-   Published specification: RFC 8072
-
-   Applications that use this media type: Instance document
-      data parsers used within a protocol or automation tool
-      that utilize the YANG Patch data structure.
-
-   Fragment identifier considerations: The syntax and semantics
-      of fragment identifiers are the same as the syntax and semantics
-      specified for the "application/xml" media type.
-
-   Additional information:
-
-      Deprecated alias names for this type: N/A
-      Magic number(s): N/A
-      File extension(s): None
-      Macintosh file type code(s): "TEXT"
-
-   Person &amp; email address to contact for further information: See
-      the Authors' Addresses section of RFC 8072.
-
-   Intended usage: COMMON
-
-   Restrictions on usage: N/A
-
-   Author: See the Authors' Addresses section of RFC 8072.
-
-   Change controller: Internet Engineering Task Force
-      (mailto:iesg@ietf.org).
-
-   Provisional registration? (standards tree only): no
-</artwork>
-          </figure>
-        </section>
       </section>
     </section>
-
     <section anchor="security" title="Security Considerations">
       <section title="The &quot;ietf-restconf-list-pagination&quot; YANG Module">
         <t>The YANG module defined in this document extends the base operations
@@ -356,20 +435,16 @@ INSERT_TEXT_FROM_FILE(ietf-restconf-list-pagination@YYYY-MM-DD.yang)
           <xref target="RFC6242"/>. The lowest RESTCONF layer is HTTPS,
           and the mandatory-to-implement secure transport is TLS
           <xref target="RFC8446"/>.</t>
-
         <t>The Network Configuration Access Control Model (NACM) <xref target="RFC8341"/>
       provides the means to restrict access for particular NETCONF users to a
       preconfigured subset of all available NETCONF protocol operations and
       content.</t>
-
-        <t>The security constraints for the base RESTCONF protocol (see Section
-          12 of <xref target="RFC8040"/>) apply to the new RESTCONF target
+        <t>The security constraints for the base RESTCONF protocol (see
+      <relref section="12" target="RFC8040"/>) apply to the new RESTCONF target
             resources defined in this document.</t>
       </section>
     </section>
-
   </middle>
-
   <back>
     <references title="Normative References">
       <?rfc include="reference.RFC.2119.xml"?>
@@ -382,8 +457,9 @@ INSERT_TEXT_FROM_FILE(ietf-restconf-list-pagination@YYYY-MM-DD.yang)
       <?rfc include="reference.RFC.8174.xml"?>
       <?rfc include="reference.RFC.8342.xml"?>
     </references>
-
     <references title="Informative References">
+      <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.wwlh-netconf-list-pagination-nc.xml"/>
+      <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-restconf-collection.xml"/>
       <?rfc include="reference.RFC.4855.xml"?>
       <?rfc include="reference.RFC.6838.xml"?>
       <?rfc include="reference.RFC.8341.xml"?>
@@ -391,199 +467,146 @@ INSERT_TEXT_FROM_FILE(ietf-restconf-list-pagination@YYYY-MM-DD.yang)
       <!-- <?rfc include="reference.RFC.8340.xml"?> Tree Diagrams -->
       <!--<?rfc include="reference.RFC.6991.xml"?> YANG Types-->
     </references>
-
     <section title="Example YANG Module">
       <t>The examples within this document use the "example-module" YANG
-      module defined in Appendix A of
-        [I-D.wwlh-netconf-list-pagination-nc].</t>
+        module defined in <relref section="A" target="I-D.wwlh-netconf-list-pagination-nc"/>.</t>
     </section>
-
     <section title="Example Data">
       <t>FIXME</t>
     </section>
-
     <section title="Example Queries">
-
       <section title="No Query Parameter">
         <t>Client requests all list entries:</t>
         <section title="XML">
           <t>Client requests an XML-based Response:</t>
           <t>
-          <figure>
-            <artwork><![CDATA[
+            <figure>
+              <artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc.xml)
 ]]></artwork>
-          </figure>
+            </figure>
           </t>
           <t>Response from the RESTCONF server:</t>
           <t>
-          <figure>
-            <artwork><![CDATA[
+            <figure>
+              <artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc-reply.xml)
 ]]></artwork>
-          </figure>
+            </figure>
           </t>
         </section>
         <section title="JSON">
           <t>Client requests a JSON-based Response:</t>
           <t>
-          <figure>
-            <artwork><![CDATA[
+            <figure>
+              <artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc.json)
 ]]></artwork>
-          </figure>
+            </figure>
           </t>
           <t>Response from the RESTCONF server:</t>
           <t>
-          <figure>
-            <artwork><![CDATA[
+            <figure>
+              <artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc-reply.json)
 ]]></artwork>
-          </figure>
+            </figure>
           </t>
         </section>
       </section>
-
-
       <section title="Just the &quot;count&quot; Parameter">
         <t>In this example, the client requests the first two "skill"
         resources for a given admin resource.
-          <figure>
-            <artwork><![CDATA[
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-count-rpc.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
-      <t>Response from the RESTCONF server:
-          <figure>
-            <artwork><![CDATA[
+        <t>Response from the RESTCONF server:
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-count-rpc-reply.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
       </section>
-
       <section title="Just the &quot;skip&quot; Parameter">
         <t>In this example, the client requests the next two skills resource,
         i.e., two skills resource starting from two.
-          <figure>
-            <artwork><![CDATA[
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-skip-rpc.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
-
-      <t>Response from the RESTCONF server:
-          <figure>
-            <artwork><![CDATA[
+        <t>Response from the RESTCONF server:
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-skip-rpc-reply.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
       </section>
-
       <section title="Just the &quot;direction&quot; Parameter">
         <t>In this example, the client requests the first two "skill"
         resources in the "forward" direction for a given admin:
-          <figure>
-            <artwork><![CDATA[
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-direction-rpc.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
-
-      <t>Response from the RESTCONF server:
-          <figure>
-            <artwork><![CDATA[
+        <t>Response from the RESTCONF server:
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-direction-rpc-reply.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
       </section>
-
-
       <section title="Just the &quot;sort&quot; Parameter">
         <t>In this example, the client requests the first 2 "skill" resources
         sorted by name for a given admin:
-          <figure>
-            <artwork><![CDATA[
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-sort-rpc.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
-
-      <t>Response from the RESTCONF server:
-          <figure>
-            <artwork><![CDATA[
+        <t>Response from the RESTCONF server:
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-sort-rpc-reply.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
       </section>
-
-
       <section title="Combination of &quot;where&quot; + &quot;count&quot;">
         <t>In this example, the client requests the first 2 "skill" resources
         from the selected skill resource list for a given admin:
-          <figure>
-            <artwork><![CDATA[
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-where-count-rpc.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
-
-      <t>Response from the RESTCONF server:
-          <figure>
-            <artwork><![CDATA[
+        <t>Response from the RESTCONF server:
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-where-count-rpc-reply.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
       </section>
-
-
-
       <section title="Combination of &quot;where&quot; + &quot;skip&quot; + &quot;count&quot;">
         <t>In this example, the client requests the first 2 "skill" resources
         from the selected "skill" resource list for a given admin:
-          <figure>
-            <artwork><![CDATA[
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-where-skip-count-rpc.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
-
-      <t>Response from the RESTCONF server:
-          <figure>
-            <artwork><![CDATA[
+        <t>Response from the RESTCONF server:
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-where-skip-count-rpc-reply.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
       </section>
-
-
       <section title="Combination of &quot;where&quot; + &quot;sort&quot; + &quot;skip&quot;,&quot;count&quot;">
         <t>In this example, the client requests the first 2 "skill" resources
         from the selected skill resources list for a given admin:
-          <figure>
-            <artwork><![CDATA[
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-where-sort-skip-count-rpc.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
-
-      <t>Response from the RESTCONF server:
-          <figure>
-            <artwork><![CDATA[
+        <t>Response from the RESTCONF server:
+          <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(refs/ex-api-where-sort-skip-count-rpc-reply.xml)
-]]></artwork>
-          </figure>
+]]></artwork></figure>
       </t>
       </section>
-
-    </section> <!-- Example Queries -->
-
+    </section>
+    <!-- Example Queries -->
     <!--
     <section title="Contributors" numbered="no">
       <figure>
@@ -595,11 +618,10 @@ dcornejo@gmail.com</artwork>
       </figure>
     </section>
     -->
-
     <section title="Acknowledgements" numbered="no">
       <t>This work has benefited from the discussions of restconf resource
       collection over the years, in particular,
-      [I-D.ietf-netconf-restconf-collection] which provides enhanced filtering
+      <xref target="I-D.ietf-netconf-restconf-collection"/> which provides enhanced filtering
       features for the retrieval of data nodes with the GET method. The
       authors would like to thank the following for lively discussions on
       list (ordered by first name):
@@ -608,6 +630,5 @@ dcornejo@gmail.com</artwork>
         Robert Varga
       </t>
     </section>
-
   </back>
 </rfc>
