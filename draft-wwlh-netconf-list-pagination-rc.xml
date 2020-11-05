@@ -472,7 +472,476 @@ Index           Capability Identifier
         module defined in <relref section="A" target="I-D.wwlh-netconf-list-pagination-nc"/>.</t>
     </section>
     <section title="Example Data">
-      <t>FIXME</t>
+      <t>
+        <figure>
+          <artwork><![CDATA[
+<admins
+	xmlns="http://example.com/ns/example-module">
+	<admin>
+		<name>Alice</name>
+		<access>permit</access>
+		<email-address>alice@example.com</email-address>
+		<password>$0$1543</password>
+		<status>Available</status>
+		<preference>
+			<number>1</number>
+			<number>2</number>
+		</preference>
+		<skill>
+			<name>Customer Service</name>
+			<rank>99</rank>
+		</skill>
+		<skill>
+			<name>Problem Solving</name>
+			<rank>90</rank>
+		</skill>
+	</admin>
+	<admin>
+		<name>Bob</name>
+		<access>limited</access>
+		<email-address>bob@example.com</email-address>
+		<password>$0$2789</password>
+		<status>Busy</status>
+		<preference>
+			<number>2</number>
+			<number>3</number>
+		</preference>
+		<skill>
+			<name>Customer Service</name>
+			<rank>90</rank>
+		</skill>
+		<skill>
+			<name>Problem Solving</name>
+			<rank>98</rank>
+		</skill>
+		<skill>
+			<name>Conflict Resolution</name>
+			<rank>93</rank>
+		</skill>
+		<skill>
+			<name>Management</name>
+			<rank>92</rank>
+		</skill>
+		<skill>
+			<name>Collaboration</name>
+			<rank>87</rank>
+		</skill>
+	</admin>
+	<admin>
+		<name>Joe</name>
+		<access>permit</access>
+		<email-address>joe@example.com</email-address>
+		<password>$0$6523</password>
+		<status>Do Not Disturb</status>
+		<preference>
+			<number>1</number>
+			<number>4</number>
+		</preference>
+		<skill>
+			<name>Management</name>
+			<rank>96</rank>
+		</skill>
+		<skill>
+			<name>Collaboration</name>
+			<rank>92</rank>
+		</skill>
+	</admin>
+	<admin>
+		<name>Frank</name>
+		<access>deny</access>
+		<email-address>frank@example.com</email-address>
+		<password>$0$4030</password>
+		<status>Offline</status>
+		<preference>
+			<number>5</number>
+			<number>9</number>
+		</preference>
+		<skill>
+			<name>Organization</name>
+			<rank>90</rank>
+		</skill>
+		<skill>
+			<name>Negotiation</name>
+			<rank>80</rank>
+		</skill>
+	</admin>
+	<admin>
+		<name>Tom</name>
+		<access>permit</access>
+		<email-address>tom@example.com</email-address>
+		<password>$0$2376</password>
+		<status>Do Not Disturb</status>
+		<preference>
+			<number>2</number>
+			<number>5</number>
+		</preference>
+		<skill>
+			<name>Adaptability.</name>
+			<rank>98</rank>
+		</skill>
+		<skill>
+			<name>Active Listening</name>
+			<rank>85</rank>
+		</skill>
+	</admin>
+</admins>
+<rulebase
+	xmlns="http://example.com/ns/example-module">
+	<rule>
+		<name>SvrA-http</name>
+		<match>92.0.2.0/24</match>
+		<action>forwarding</action>
+	</rule>
+	<rule>
+		<name>SvrA-ftp</name>
+		<match>203.0.113.1/32</match>
+		<action>forwarding</action>
+	</rule>
+	<rule>
+		<name>p2p</name>
+		<match>p2p</match>
+		<action>logging</action>
+	</rule>
+	<rule>
+		<name>any</name>
+		<match>any</match>
+		<action>logging</action>
+	</rule>
+	<rule>
+		<name>SvrA-tcp</name>
+		<match>80</match>
+		<action>forwarding</action>
+	</rule>
+</rulebase>
+<device-logs
+	xmlns="http://example.com/ns/example-module">
+	<device-log>
+		<device-id>Cloud-IoT-Device-A</device-id>
+		<time-received>2020-07-08T12:38:32Z</time-received>
+		<time-generated>2020-07-08T12:37:12Z</time-generated>
+		<message>Upload contains 6 datapoints</message>
+	</device-log>
+	<device-log>
+		<device-id>Cloud-IoT-Device-B</device-id>
+		<time-received>2020-07-08T16:20:54Z</time-received>
+		<time-generated>2020-07-08T16:20:14Z</time-generated>
+		<message>Upload successful</message>
+	</device-log>
+	<device-log>
+		<device-id>Cloud-IoT-Device-C</device-id>
+		<time-received>2020-07-08T17:30:34Z</time-received>
+		<time-generated>2020-07-08T17:30:12Z</time-generated>
+		<message>Receive a configuration update</message>
+	</device-log>
+	<device-log>
+		<device-id>Cloud-IoT-Device-D</device-id>
+		<time-received>2020-07-08T18:40:13Z</time-received>
+		<time-generated>2020-07-08T18:40:00Z</time-generated>
+		<message>Keep-alive ping sent to server</message>
+	</device-log>
+	<device-log>
+		<device-id>Cloud-IoT-Device-E</device-id>
+		<time-received>2020-07-08T19:48:34Z</time-received>
+		<time-generated>2020-07-08T19:48:00Z</time-generated>
+		<message>Uploading data to DataPoint</message>
+	</device-log>
+</device-logs>
+<audit-logs
+	xmlns="http://example.com/ns/example-module">
+	<audit-log>
+		<source-ip>192.168.0.92</source-ip>
+		<log-creation>2020-11-01T06:47:59Z</log-creation>
+		<request>User-logged-out</request>
+		<outcome>true</outcome>
+	</audit-log>
+	<audit-log>
+		<source-ip>192.168.0.92</source-ip>
+		<log-creation>2020-11-01T06:49:03Z</log-creation>
+		<request>User-logged-in</request>
+		<outcome>true</outcome>
+	</audit-log>
+	<audit-log>
+		<source-ip>192.168.0.92</source-ip>
+		<log-creation>2020-11-01T06:51:34Z</log-creation>
+		<request>Patron-card-viewed</request>
+		<outcome>false</outcome>
+	</audit-log>
+	<audit-log>
+		<source-ip>192.168.0.92</source-ip>
+		<log-creation>2020-11-01T06:53:01Z</log-creation>
+		<request>User-logged-out</request>
+		<outcome>true</outcome>
+	</audit-log>
+	<audit-log>
+		<source-ip>192.168.0.92</source-ip>
+		<log-creation>2020-11-01T06:56:22Z</log-creation>
+		<request>User-logged-in</request>
+		<outcome>false</outcome>
+	</audit-log>
+</audit-logs>
+<prefixes
+	xmlns="http://example.com/ns/example-module">
+	<prefix-list>
+		<ip-prefix>10.0.0.0 8</ip-prefix>
+		<masklength-lower>17</masklength-lower>
+		<masklength-upper>18</masklength-upper>
+	</prefix-list>
+	<prefix-list>
+		<ip-prefix>2000:1::</ip-prefix>
+		<masklength-lower>48</masklength-lower>
+		<masklength-upper>48</masklength-upper>
+	</prefix-list>
+	<prefix-list>
+		<ip-prefix>2000:2::</ip-prefix>
+		<masklength-lower>48</masklength-lower>
+		<masklength-upper>48</masklength-upper>
+	</prefix-list>
+	<prefix-list>
+		<ip-prefix>2000:3::</ip-prefix>
+		<masklength-lower>16</masklength-lower>
+		<masklength-upper>16</masklength-upper>
+	</prefix-list>
+	<prefix-list>
+		<ip-prefix>::</ip-prefix>
+		<masklength-lower>0</masklength-lower>
+		<masklength-upper>128</masklength-upper>
+	</prefix-list>
+</prefixes>
+<admins
+	xmlns="http://example.com/ns/example-module">
+	<admin>
+		<name>Alice</name>
+		<access>permit</access>
+		<email-address>alice@example.com</email-address>
+		<password>$0$1543</password>
+		<status>Available</status>
+		<preference>
+			<number>1</number>
+			<number>2</number>
+		</preference>
+		<skill>
+			<name>Customer Service</name>
+			<rank>99</rank>
+		</skill>
+		<skill>
+			<name>Problem Solving</name>
+			<rank>90</rank>
+		</skill>
+	</admin>
+	<admin>
+		<name>Bob</name>
+		<access>limited</access>
+		<email-address>bob@example.com</email-address>
+		<password>$0$2789</password>
+		<status>Busy</status>
+		<preference>
+			<number>2</number>
+			<number>3</number>
+		</preference>
+		<skill>
+			<name>Customer Service</name>
+			<rank>90</rank>
+		</skill>
+		<skill>
+			<name>Problem Solving</name>
+			<rank>98</rank>
+		</skill>
+		<skill>
+			<name>Conflict Resolution</name>
+			<rank>93</rank>
+		</skill>
+		<skill>
+			<name>Management</name>
+			<rank>92</rank>
+		</skill>
+		<skill>
+			<name>Collaboration</name>
+			<rank>87</rank>
+		</skill>
+	</admin>
+	<admin>
+		<name>Joe</name>
+		<access>permit</access>
+		<email-address>joe@example.com</email-address>
+		<password>$0$6523</password>
+		<status>Do Not Disturb</status>
+		<preference>
+			<number>1</number>
+			<number>4</number>
+		</preference>
+		<skill>
+			<name>Management</name>
+			<rank>96</rank>
+		</skill>
+		<skill>
+			<name>Collaboration</name>
+			<rank>92</rank>
+		</skill>
+	</admin>
+	<admin>
+		<name>Frank</name>
+		<access>deny</access>
+		<email-address>frank@example.com</email-address>
+		<password>$0$4030</password>
+		<status>Offline</status>
+		<preference>
+			<number>5</number>
+			<number>9</number>
+		</preference>
+		<skill>
+			<name>Organization</name>
+			<rank>90</rank>
+		</skill>
+		<skill>
+			<name>Negotiation</name>
+			<rank>80</rank>
+		</skill>
+	</admin>
+	<admin>
+		<name>Tom</name>
+		<access>permit</access>
+		<email-address>tom@example.com</email-address>
+		<password>$0$2376</password>
+		<status>Do Not Disturb</status>
+		<preference>
+			<number>2</number>
+			<number>5</number>
+		</preference>
+		<skill>
+			<name>Adaptability.</name>
+			<rank>98</rank>
+		</skill>
+		<skill>
+			<name>Active Listening</name>
+			<rank>85</rank>
+		</skill>
+	</admin>
+</admins>
+<rulebase
+	xmlns="http://example.com/ns/example-module">
+	<rule>
+		<name>SvrA-http</name>
+		<match>92.0.2.0/24</match>
+		<action>forwarding</action>
+	</rule>
+	<rule>
+		<name>SvrA-ftp</name>
+		<match>203.0.113.1/32</match>
+		<action>forwarding</action>
+	</rule>
+	<rule>
+		<name>p2p</name>
+		<match>p2p</match>
+		<action>logging</action>
+	</rule>
+	<rule>
+		<name>any</name>
+		<match>any</match>
+		<action>logging</action>
+	</rule>
+	<rule>
+		<name>SvrA-tcp</name>
+		<match>80</match>
+		<action>forwarding</action>
+	</rule>
+</rulebase>
+<device-logs
+	xmlns="http://example.com/ns/example-module">
+	<device-log>
+		<device-id>Cloud-IoT-Device-A</device-id>
+		<time-received>2020-07-08T12:38:32Z</time-received>
+		<time-generated>2020-07-08T12:37:12Z</time-generated>
+		<message>Upload contains 6 datapoints</message>
+	</device-log>
+	<device-log>
+		<device-id>Cloud-IoT-Device-B</device-id>
+		<time-received>2020-07-08T16:20:54Z</time-received>
+		<time-generated>2020-07-08T16:20:14Z</time-generated>
+		<message>Upload successful</message>
+	</device-log>
+	<device-log>
+		<device-id>Cloud-IoT-Device-C</device-id>
+		<time-received>2020-07-08T17:30:34Z</time-received>
+		<time-generated>2020-07-08T17:30:12Z</time-generated>
+		<message>Receive a configuration update</message>
+	</device-log>
+	<device-log>
+		<device-id>Cloud-IoT-Device-D</device-id>
+		<time-received>2020-07-08T18:40:13Z</time-received>
+		<time-generated>2020-07-08T18:40:00Z</time-generated>
+		<message>Keep-alive ping sent to server</message>
+	</device-log>
+	<device-log>
+		<device-id>Cloud-IoT-Device-E</device-id>
+		<time-received>2020-07-08T19:48:34Z</time-received>
+		<time-generated>2020-07-08T19:48:00Z</time-generated>
+		<message>Uploading data to DataPoint</message>
+	</device-log>
+</device-logs>
+<audit-logs
+	xmlns="http://example.com/ns/example-module">
+	<audit-log>
+		<source-ip>192.168.0.92</source-ip>
+		<log-creation>2020-11-01T06:47:59Z</log-creation>
+		<request>User-logged-out</request>
+		<outcome>true</outcome>
+	</audit-log>
+	<audit-log>
+		<source-ip>192.168.0.92</source-ip>
+		<log-creation>2020-11-01T06:49:03Z</log-creation>
+		<request>User-logged-in</request>
+		<outcome>true</outcome>
+	</audit-log>
+	<audit-log>
+		<source-ip>192.168.0.92</source-ip>
+		<log-creation>2020-11-01T06:51:34Z</log-creation>
+		<request>Patron-card-viewed</request>
+		<outcome>false</outcome>
+	</audit-log>
+	<audit-log>
+		<source-ip>192.168.0.92</source-ip>
+		<log-creation>2020-11-01T06:53:01Z</log-creation>
+		<request>User-logged-out</request>
+		<outcome>true</outcome>
+	</audit-log>
+	<audit-log>
+		<source-ip>192.168.0.92</source-ip>
+		<log-creation>2020-11-01T06:56:22Z</log-creation>
+		<request>User-logged-in</request>
+		<outcome>false</outcome>
+	</audit-log>
+</audit-logs>
+<prefixes
+	xmlns="http://example.com/ns/example-module">
+	<prefix-list>
+		<ip-prefix>10.0.0.0 8</ip-prefix>
+		<masklength-lower>17</masklength-lower>
+		<masklength-upper>18</masklength-upper>
+	</prefix-list>
+	<prefix-list>
+		<ip-prefix>2000:1::</ip-prefix>
+		<masklength-lower>48</masklength-lower>
+		<masklength-upper>48</masklength-upper>
+	</prefix-list>
+	<prefix-list>
+		<ip-prefix>2000:2::</ip-prefix>
+		<masklength-lower>48</masklength-lower>
+		<masklength-upper>48</masklength-upper>
+	</prefix-list>
+	<prefix-list>
+		<ip-prefix>2000:3::</ip-prefix>
+		<masklength-lower>16</masklength-lower>
+		<masklength-upper>16</masklength-upper>
+	</prefix-list>
+	<prefix-list>
+		<ip-prefix>::</ip-prefix>
+		<masklength-lower>0</masklength-lower>
+		<masklength-upper>128</masklength-upper>
+	</prefix-list>
+</prefixes>
+]]></artwork>
+            </figure>
+          </t>
     </section>
     <section title="Example Queries">
       <section title="No Query Parameters">
