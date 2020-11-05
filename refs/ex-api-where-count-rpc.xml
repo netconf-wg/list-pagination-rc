@@ -1,3 +1,4 @@
-GET /restconf/ds/ietf-datastores:running/example-module:admins/admin=Bob/skill?where=???&count=2  HTTP/1.1
+GET /restconf/ds/ietf-datastores:running/example-module:admins/admin\
+=Bob/skill?where=rank>=90&&rank<=99&count=2  HTTP/1.1
 Host: example.com
 Accept: application/yang-data+xml-list
