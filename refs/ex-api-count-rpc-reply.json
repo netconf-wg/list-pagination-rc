@@ -7,12 +7,12 @@ Content-Type: application/yang-data+json
 {
   "example-module:skill" : [
     {
-      "name": "Problem Solving",
-      "rank": 98
+      "name": "Customer Service",
+      "rank": 90
     },
     {
-      "name": "Conflict Resolution",
-      "rank": 93
+      "name": "Problem Solving",
+      "rank": 98
     }
   ]
 }
