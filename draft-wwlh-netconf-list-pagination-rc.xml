@@ -472,7 +472,13 @@ Index           Capability Identifier
         module defined in <relref section="A" target="I-D.wwlh-netconf-list-pagination-nc"/>.</t>
     </section>
     <section title="Example Data">
-      <t>FIXME</t>
+      <t>
+        <figure>
+          <artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(refs/ex-data-set.xml)
+]]></artwork>
+            </figure>
+          </t>
     </section>
     <section title="Example Queries">
       <section title="No Query Parameters">
