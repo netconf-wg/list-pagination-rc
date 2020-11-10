@@ -6,13 +6,23 @@ Content-Type: application/yang-data+xml-list
 
 <xml-list xmlns="urn:ietf:params:xml:ns:yang:ietf-list-pagination">
   <skill xmlns="http://example.com/ns/example-module">
+    <name>Customer Service</name>
+    <rank>90</rank>
+  </skill>
+  <skill xmlns="http://example.com/ns/example-module">
     <name>Problem Solving</name>
     <rank>98</rank>
-    ...
   </skill>
   <skill xmlns="http://example.com/ns/example-module">
     <name>Conflict Resolution</name>
     <rank>93</rank>
-    ...
+  </skill>
+  <skill xmlns="http://example.com/ns/example-module">
+    <name>Management</name>
+    <rank>92</rank>
+  </skill>
+  <skill xmlns="http://example.com/ns/example-module">
+    <name>Collaboration</name>
+    <rank>87</rank>
   </skill>
 </xml-list>
