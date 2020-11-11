@@ -18,11 +18,11 @@ Content-Type: application/yang-data+json
       "name": "Conflict Resolution",
       "rank": 93
     },
-	{
+    {
       "name": "Management",
       "rank": 92
     },
-	{
+    {
       "name": "Collaboration",
       "rank": 87
     }
