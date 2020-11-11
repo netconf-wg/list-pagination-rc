@@ -475,7 +475,7 @@ Index           Capability Identifier
       <t>
         <figure>
           <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-data-set.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-data-set.xml)
 ]]></artwork>
             </figure>
           </t>
@@ -490,7 +490,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-data-set.xml)
           <t>
             <figure>
               <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-none-rpc.xml)
 ]]></artwork>
             </figure>
           </t>
@@ -498,7 +498,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc.xml)
           <t>
             <figure>
               <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc-reply.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-none-rpc-reply.xml)
 ]]></artwork>
             </figure>
           </t>
@@ -508,7 +508,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc-reply.xml)
           <t>
             <figure>
               <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc.json)
+INSERT_TEXT_FROM_FILE(includes/ex-api-none-rpc.json)
 ]]></artwork>
             </figure>
           </t>
@@ -516,7 +516,7 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc.json)
           <t>
             <figure>
               <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc-reply.json)
+INSERT_TEXT_FROM_FILE(includes/ex-api-none-rpc-reply.json)
 ]]></artwork>
             </figure>
           </t>
@@ -526,12 +526,12 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-none-rpc-reply.json)
         <t>In this example, the client requests the first two "skill"
         resources for a given admin resource.
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-count-rpc.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-count-rpc.xml)
 ]]></artwork></figure>
       </t>
         <t>Response from the RESTCONF server:
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-count-rpc-reply.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-count-rpc-reply.xml)
 ]]></artwork></figure>
       </t>
       </section>
@@ -539,12 +539,12 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-count-rpc-reply.xml)
         <t>In this example, the client requests the next two skills resource,
         i.e., two skills resource starting from two.
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-skip-rpc.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-skip-rpc.xml)
 ]]></artwork></figure>
       </t>
         <t>Response from the RESTCONF server:
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-skip-rpc-reply.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-skip-rpc-reply.xml)
 ]]></artwork></figure>
       </t>
       </section>
@@ -552,12 +552,12 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-skip-rpc-reply.xml)
         <t>In this example, the client requests the first two "skill"
         resources in the "forward" direction for a given admin:
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-direction-rpc.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-direction-rpc.xml)
 ]]></artwork></figure>
       </t>
         <t>Response from the RESTCONF server:
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-direction-rpc-reply.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-direction-rpc-reply.xml)
 ]]></artwork></figure>
       </t>
       </section>
@@ -565,12 +565,12 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-direction-rpc-reply.xml)
         <t>In this example, the client requests the first 2 "skill" resources
         sorted by name for a given admin:
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-sort-rpc.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-sort-rpc.xml)
 ]]></artwork></figure>
       </t>
         <t>Response from the RESTCONF server:
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-sort-rpc-reply.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-sort-rpc-reply.xml)
 ]]></artwork></figure>
       </t>
       </section>
@@ -578,12 +578,12 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-sort-rpc-reply.xml)
         <t>In this example, the client requests the first 2 "skill" resources
         from the selected skill resource list for a given admin:
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-where-count-rpc.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-where-count-rpc.xml)
 ]]></artwork></figure>
       </t>
         <t>Response from the RESTCONF server:
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-where-count-rpc-reply.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-where-count-rpc-reply.xml)
 ]]></artwork></figure>
       </t>
       </section>
@@ -591,12 +591,12 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-where-count-rpc-reply.xml)
         <t>In this example, the client requests the first 2 "skill" resources
         from the selected "skill" resource list for a given admin:
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-where-skip-count-rpc.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-where-skip-count-rpc.xml)
 ]]></artwork></figure>
       </t>
         <t>Response from the RESTCONF server:
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-where-skip-count-rpc-reply.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-where-skip-count-rpc-reply.xml)
 ]]></artwork></figure>
       </t>
       </section>
@@ -604,12 +604,12 @@ INSERT_TEXT_FROM_FILE(refs/ex-api-where-skip-count-rpc-reply.xml)
         <t>In this example, the client requests the first 2 "skill" resources
         from the selected skill resources list for a given admin:
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-where-sort-skip-count-rpc.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-where-sort-skip-count-rpc.xml)
 ]]></artwork></figure>
       </t>
         <t>Response from the RESTCONF server:
           <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(refs/ex-api-where-sort-skip-count-rpc-reply.xml)
+INSERT_TEXT_FROM_FILE(includes/ex-api-where-sort-skip-count-rpc-reply.xml)
 ]]></artwork></figure>
       </t>
       </section>
