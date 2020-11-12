@@ -1,0 +1,269 @@
+{
+  "example-module:admins": {
+    "admin": [
+      {
+        "name": "Alice",
+        "access": "permit",
+        "email-address": "alice@example.com",
+        "password": "$0$1543",
+        "status": [
+          "Available"
+        ],
+        "preference": {
+          "number": [
+            1,
+            2
+          ]
+        },
+        "skill": [
+          {
+            "name": "Customer Service",
+            "rank": 99
+          },
+          {
+            "name": "Problem Solving",
+            "rank": 90
+          }
+        ]
+      },
+      {
+        "name": "Bob",
+        "access": "limited",
+        "email-address": "bob@example.com",
+        "password": "$0$2789",
+        "status": [
+          "Busy"
+        ],
+        "preference": {
+          "number": [
+            2,
+            3
+          ]
+        },
+        "skill": [
+          {
+            "name": "Customer Service",
+            "rank": 90
+          },
+          {
+            "name": "Problem Solving",
+            "rank": 98
+          },
+          {
+            "name": "Conflict Resolution",
+            "rank": 93
+          },
+          {
+            "name": "Management",
+            "rank": 92
+          },
+          {
+            "name": "Collaboration",
+            "rank": 87
+          }
+        ]
+      },
+      {
+        "name": "Joe",
+        "access": "permit",
+        "email-address": "joe@example.com",
+        "password": "$0$6523",
+        "status": [
+          "Do Not Disturb"
+        ],
+        "preference": {
+          "number": [
+            1,
+            4
+          ]
+        },
+        "skill": [
+          {
+            "name": "Management",
+            "rank": 96
+          },
+          {
+            "name": "Collaboration",
+            "rank": 92
+          }
+        ]
+      },
+      {
+        "name": "Frank",
+        "access": "deny",
+        "email-address": "frank@example.com",
+        "password": "$0$4030",
+        "status": [
+          "Offline"
+        ],
+        "preference": {
+          "number": [
+            5,
+            9
+          ]
+        },
+        "skill": [
+          {
+            "name": "Organization",
+            "rank": 90
+          },
+          {
+            "name": "Negotiation",
+            "rank": 80
+          }
+        ]
+      },
+      {
+        "name": "Tom",
+        "access": "permit",
+        "email-address": "tom@example.com",
+        "password": "$0$2376",
+        "status": [
+          "Do Not Disturb"
+        ],
+        "preference": {
+          "number": [
+            2,
+            5
+          ]
+        },
+        "skill": [
+          {
+            "name": "Adaptability.",
+            "rank": 98
+          },
+          {
+            "name": "Active Listening",
+            "rank": 85
+          }
+        ]
+      }
+    ]
+  },
+  "example-module:rulebase": {
+    "rule": [
+      {
+        "name": "SvrA-http",
+        "match": "92.0.2.0/24",
+        "action": "forwarding"
+      },
+      {
+        "name": "SvrA-ftp",
+        "match": "203.0.113.1/32",
+        "action": "forwarding"
+      },
+      {
+        "name": "p2p",
+        "match": "p2p",
+        "action": "logging"
+      },
+      {
+        "name": "any",
+        "match": "any",
+        "action": "logging"
+      },
+      {
+        "name": "SvrA-tcp",
+        "match": "80",
+        "action": "forwarding"
+      }
+    ]
+  },
+  "example-module:device-logs": {
+    "device-log": [
+      {
+        "device-id": "Cloud-IoT-Device-A",
+        "time-received": "2020-07-08T12:38:32Z",
+        "time-generated": "2020-07-08T12:37:12Z",
+        "message": "Upload contains 6 datapoints"
+      },
+      {
+        "device-id": "Cloud-IoT-Device-B",
+        "time-received": "2020-07-08T16:20:54Z",
+        "time-generated": "2020-07-08T16:20:14Z",
+        "message": "Upload successful"
+      },
+      {
+        "device-id": "Cloud-IoT-Device-C",
+        "time-received": "2020-07-08T17:30:34Z",
+        "time-generated": "2020-07-08T17:30:12Z",
+        "message": "Receive a configuration update"
+      },
+      {
+        "device-id": "Cloud-IoT-Device-D",
+        "time-received": "2020-07-08T18:40:13Z",
+        "time-generated": "2020-07-08T18:40:00Z",
+        "message": "Keep-alive ping sent to server"
+      },
+      {
+        "device-id": "Cloud-IoT-Device-E",
+        "time-received": "2020-07-08T19:48:34Z",
+        "time-generated": "2020-07-08T19:48:00Z",
+        "message": "Uploading data to DataPoint"
+      }
+    ]
+  },
+  "example-module:audit-logs": {
+    "audit-log": [
+      {
+        "source-ip": "192.168.0.92",
+        "log-creation": "2020-11-01T06:47:59Z",
+        "request": "User-logged-out",
+        "outcome": true
+      },
+      {
+        "source-ip": "192.168.0.92",
+        "log-creation": "2020-11-01T06:49:03Z",
+        "request": "User-logged-in",
+        "outcome": true
+      },
+      {
+        "source-ip": "192.168.0.92",
+        "log-creation": "2020-11-01T06:51:34Z",
+        "request": "Patron-card-viewed",
+        "outcome": false
+      },
+      {
+        "source-ip": "192.168.0.92",
+        "log-creation": "2020-11-01T06:53:01Z",
+        "request": "User-logged-out",
+        "outcome": true
+      },
+      {
+        "source-ip": "192.168.0.92",
+        "log-creation": "2020-11-01T06:56:22Z",
+        "request": "User-logged-in",
+        "outcome": false
+      }
+    ]
+  },
+  "example-module:prefixes": {
+    "prefix-list": [
+      {
+        "ip-prefix": "10.0.0.0/8",
+        "masklength-lower": 17,
+        "masklength-upper": 18
+      },
+      {
+        "ip-prefix": "2000:1::/24",
+        "masklength-lower": 48,
+        "masklength-upper": 48
+      },
+      {
+        "ip-prefix": "2000:2::/24",
+        "masklength-lower": 48,
+        "masklength-upper": 48
+      },
+      {
+        "ip-prefix": "2000:3::/24",
+        "masklength-lower": 16,
+        "masklength-upper": 16
+      },
+      {
+        "ip-prefix": "::/24",
+        "masklength-lower": 0,
+        "masklength-upper": 128
+      }
+    ]
+  }
+}

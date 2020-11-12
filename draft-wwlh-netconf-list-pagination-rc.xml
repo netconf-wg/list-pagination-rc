@@ -125,17 +125,18 @@
 
       <section title="Media Type">
         <t>This document extends <relref section="3.2" target="RFC8040"/>
-          to add a new media type used exclusivily to encode "list" and
-          "leaf-list" nodes for XML.</t>
-        <t>The new media type, "application/yang-data+xml-list", is used
-          to define a pseudo element called "xml-list" that is used to
-          wrap the response set to ensure that a single top-level element
-          is returned for the XML encoding", as required by <relref 
+          to add a new media type, "application/yang-data+xml-list", to
+          encode "list" and "leaf-list" nodes in XML.</t>
+        <t>The "application/yang-data+xml-list" media-type defines a
+          pseudo top-level element called "xml-list" that is used to
+          wrap the response set, thus ensuring that a single top-level
+          element is returned for the XML encoding", as required by <relref 
           section="4.3" target="RFC8040"/>.</t>
-        <t>Note that no special enoding support is required to encode JSON
+        <t>For JSON, the existing "application/yang-data+json" media type is
+          sufficient, as the JSON format has built-in support for encoding
           arrays.</t>
-        <t>The "application/yang-data+xml-list" media type is defined in
-        <xref target="media-type"/>.</t>
+        <t>The "application/yang-data+xml-list" media type is registrered
+          in <xref target="media-type"/>.</t>
       </section>
 
       <section title="Query Parameters">
@@ -184,10 +185,10 @@
             from the working result set (i.e., after the "skip"
             parameter has been applied) that are returned.</t>
           <t>The allowed values are positive integers.</t>
-          <t>This parameter is only allowed for the GET method on
+          <t>This parameter is only allowed for the GET and HEAD methods on
             "list" and "leaf-list" data resources. A "400 Bad Request"
             status-line is returned if used for other methods or
-            resource types.</t>
+            on other resource types.</t>
           <t>If this query parameter is not present, the number of
             entries that may be returned is unbounded.</t>
           <t>This query parameter MUST be supported for all lists and
@@ -201,10 +202,10 @@
           <t>The allowed values are positive integers.  If the skip
             value exceeds the number of entries in the working result
             set, then "416 Range Not Satisfiable" status-line is returned.</t>
-          <t>This parameter is only allowed for GET method on
+          <t>This parameter is only allowed for the GET and HEAD methods on
             "list" and "leaf-list" data resources. A "400 Bad Request"
             status-line is returned if used for other methods or
-            resource types.</t>
+            on other resource types.</t>
           <t>If this query parameter is not present, the default value
             is to not skip over any values from the working result set.</t>
           <t>This query parameter MUST be supported for all lists and
@@ -231,10 +232,10 @@
 ]]></artwork>
             </figure>
           </t>
-          <t>This parameter is only allowed for GET method on
+          <t>This parameter is only allowed for the GET and HEAD methods on
             "list" and "leaf-list" data resources. A "400 Bad Request"
             status-line is returned if used for other methods or
-            resource types.</t>
+            on other resource types.</t>
           <t>If this query parameter is not present, the default
             value is "forward".</t>
           <t>This query parameter MUST be supported for all lists and
@@ -252,9 +253,9 @@
             lists, the node idenitfier MUST point to a node having
             the "indexed" extension statement applied to it
             (see Node Tags).</t>
-          <t>This parameter is only allowed for GET method on
+          <t>This parameter is only allowed for the GET and HEAD methods on
             "list" data resources. A "400 Bad Request" status-line
-            is returned if used for other methods or resource types.</t>
+            is returned if used for other methods or on other resource types.</t>
           <t>If this query parameter is not present, then the list
             or leaf-list's default order is used, per the YANG
             "ordered-by" statement.</t>
@@ -264,14 +265,14 @@
         <section title="The &quot;where&quot; Query Parameter">
           <t>The "where" query parameter specifies a filter expression
             that result set entries must match.</t>
-          <t>The allowed values are Xpath 1.0 expressions that MAY be
+          <t>The allowed values are Xpath 1.0 expressions MAY be
             constrained for "config true" and/or "config false" lists,
             in general or on an instance-by-instance basis, as described
             in some TBD section.</t>
-          <t>This parameter is only allowed for GET method on
+          <t>This parameter is only allowed for the GET and HEAD methods on
             "list" and "leaf-list" data resources. A "400 Bad Request"
             status-line is returned if used for other methods or
-            resource types.</t>
+            on other resource types.</t>
           <t>If this query parameter is not present, then no entries
             are filtered from the working result set.</t>
           <t>This query parameter MUST be supported for all lists

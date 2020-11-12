@@ -39,8 +39,8 @@ clean:
 	-rm -f $(draft).txt $(draft).html index.html
 	-rm -f $(next).txt $(next).html
 	-rm -f $(draft)-[0-9][0-9].xml
-	-rm -f ietf-*\@202*.yang
-	-rm -f refs/ietf-*\@202*.yang
+	-rm -f ietf-restconf-list-pagination@202?-??-??.yang
+	-rm -f includes/example-module\@202?-??-??.yang
 	-rm -f metadata.min.js
 ifeq (md,$(draft_type))
 	-rm -f $(draft).xml
@@ -53,7 +53,8 @@ endif
 $(next).xml: $(draft).xml
 	sed -e"s/$(basename $<)-latest/$(basename $@)/" -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" $< > $@
 	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" ietf-restconf-list-pagination.yang > ietf-restconf-list-pagination\@$(shell date +%Y-%m-%d).yang
-	#cd refs && ./validate-all.sh && ./gen-trees.sh && cd ..
+	sed -e"s/YYYY-MM-DD/$(shell date +%Y-%m-%d)/" includes/example-module.yang > includes/example-module\@$(shell date +%Y-%m-%d).yang
+	cd includes && ./validate-all.sh && ./gen-trees.sh && cd ..
 	./.insert-figures.sh $@ > tmp && mv tmp $@
 	@rm -f refs/*-tree*.txt
 

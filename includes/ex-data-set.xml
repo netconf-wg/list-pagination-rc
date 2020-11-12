@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<instance-data-set xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-instance-data">
+<content-data
+  xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-instance-data">
   <admins xmlns="http://example.com/ns/example-module">
     <admin>
       <name>Alice</name>
@@ -202,29 +203,29 @@
   </audit-logs>
   <prefixes xmlns="http://example.com/ns/example-module">
     <prefix-list>
-      <ip-prefix>10.0.0.0 8</ip-prefix>
+      <ip-prefix>10.0.0.0/8</ip-prefix>
       <masklength-lower>17</masklength-lower>
       <masklength-upper>18</masklength-upper>
     </prefix-list>
     <prefix-list>
-      <ip-prefix>2000:1::</ip-prefix>
+      <ip-prefix>2000:1::/24</ip-prefix>
       <masklength-lower>48</masklength-lower>
       <masklength-upper>48</masklength-upper>
     </prefix-list>
     <prefix-list>
-      <ip-prefix>2000:2::</ip-prefix>
+      <ip-prefix>2000:2::/24</ip-prefix>
       <masklength-lower>48</masklength-lower>
       <masklength-upper>48</masklength-upper>
     </prefix-list>
     <prefix-list>
-      <ip-prefix>2000:3::</ip-prefix>
+      <ip-prefix>2000:3::/24</ip-prefix>
       <masklength-lower>16</masklength-lower>
       <masklength-upper>16</masklength-upper>
     </prefix-list>
     <prefix-list>
-      <ip-prefix>::</ip-prefix>
+      <ip-prefix>::/24</ip-prefix>
       <masklength-lower>0</masklength-lower>
       <masklength-upper>128</masklength-upper>
     </prefix-list>
   </prefixes>
-</instance-data-set>
+</content-data>
