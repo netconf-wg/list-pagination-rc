@@ -151,7 +151,7 @@
 +-----------+---------+-----------------------------------------+
 | count     | GET,    | Limits the number of entries returned.  |
 |           | HEAD    | If not specified, the number of entries |
-|           |         | that may be returned in unbounded.      |
+|           |         | that may be returned is unbounded.      |
 |           |         |                                         |
 | skip      | GET,    | Indicates the number of entries in the  |
 |           | HEAD    | result set that should the skipped over |
@@ -250,7 +250,7 @@
             identifier does not exist in the schema, or is in any
             way optional or conditional in the schema, then a "400
             Bad Request" status-line is returned.  For "config false"
-            lists, the node idenitfier MUST point to a node having
+            lists, the node identifier MUST point to a node having
             the "indexed" extension statement applied to it
             (see Node Tags).</t>
           <t>This parameter is only allowed for the GET and HEAD methods on
@@ -265,7 +265,7 @@
         <section title="The &quot;where&quot; Query Parameter">
           <t>The "where" query parameter specifies a filter expression
             that result set entries must match.</t>
-          <t>The allowed values are Xpath 1.0 expressions MAY be
+          <t>The allowed values are XPath 1.0 expressions and MAY be
             constrained for "config true" and/or "config false" lists,
             in general or on an instance-by-instance basis, as described
             in some TBD section.</t>
