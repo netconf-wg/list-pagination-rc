@@ -84,7 +84,7 @@
         <relref section="4.8" target="RFC8040"/> to enable pagination over
         optionally filtered and/or sorted "list" and "leaf-list" entries.</t>
       <t>This document Updates RFC 8040 to declare "list" and "leaf-list" as
-        valid resource targets for the RESTCONF GET operation.</t>
+        valid resource targets for the RESTCONF GET and DELETE operations.</t>
       <t>The RPC operation defined in <xref target="I-D.wwlh-netconf-list-pagination-nc"/>
         may be optionally used if the RESTCONF server implements the
         "ietf-netconf-list-pagination" module.</t>
