@@ -184,6 +184,9 @@
           <t>The "count" query parameter limits the number of entries
             from the working result set (i.e., after the "skip"
             parameter has been applied) that are returned.</t>
+          <t>To indicate that the returned result set is partial when the
+            "count" query parameter is used, a "206 Partial Content"
+            status-line is set.</t>
           <t>The allowed values are positive integers.</t>
           <t>This parameter is only allowed for the GET and HEAD methods on
             "list" and "leaf-list" data resources. A "400 Bad Request"
@@ -199,7 +202,10 @@
           <t>The "skip" query parameter indicates the number of entries
             in the working result set (i.e., after the "direction"
             parameter has been applied) that should be skipped.</t>
-          <t>The allowed values are positive integers.  If the skip
+          <t>To indicate that the returned result set is partial when the
+            "skip" query parameter is used, a "206 Partial Content"
+            status-line is set.</t>
+          <t>The allowed values are positive integers. If the skip
             value exceeds the number of entries in the working result
             set, then "416 Range Not Satisfiable" status-line is returned.</t>
           <t>This parameter is only allowed for the GET and HEAD methods on
