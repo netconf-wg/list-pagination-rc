@@ -141,7 +141,7 @@
 
       <section title="Query Parameters">
         <t>Ths document extends <relref section="4.8" target="RFC8040"/>
-          to add new query parameters "count", "skip", "direction",
+          to add new query parameters "limit", "offset", "direction",
           "sort", and "where".</t>
         <t>
           <figure>
@@ -149,11 +149,11 @@
 +-----------+---------+-----------------------------------------+
 | Name      | Methods | Description                             |
 +-----------+---------+-----------------------------------------+
-| count     | GET,    | Limits the number of entries returned.  |
+| limit     | GET,    | Limits the number of entries returned.  |
 |           | HEAD    | If not specified, the number of entries |
 |           |         | that may be returned is unbounded.      |
 |           |         |                                         |
-| skip      | GET,    | Indicates the number of entries in the  |
+| offset    | GET,    | Indicates the number of entries in the  |
 |           | HEAD    | result set that should the skipped over |
 |           |         | when preparing the response.  If not    |
 |           |         | specified, then no entries in the       |
@@ -180,9 +180,9 @@
           </figure>
         </t>
 
-        <section title="The &quot;count&quot; Query Parameter">
-          <t>The "count" query parameter limits the number of entries
-            from the working result set (i.e., after the "skip"
+        <section title="The &quot;limit&quot; Query Parameter">
+          <t>The "limit" query parameter limits the number of entries
+            from the working result set (i.e., after the "offset"
             parameter has been applied) that are returned.</t>
           <t>The allowed values are positive integers.</t>
           <t>This parameter is only allowed for the GET and HEAD methods on
@@ -195,11 +195,11 @@
             leaf-lists.</t>
         </section>
 
-        <section title="The &quot;skip&quot; Query Parameter">
-          <t>The "skip" query parameter indicates the number of entries
+        <section title="The &quot;offset&quot; Query Parameter">
+          <t>The "offset" query parameter indicates the number of entries
             in the working result set (i.e., after the "direction"
             parameter has been applied) that should be skipped.</t>
-          <t>The allowed values are positive integers.  If the skip
+          <t>The allowed values are positive integers.  If the offset
             value exceeds the number of entries in the working result
             set, then "416 Range Not Satisfiable" status-line is returned.</t>
           <t>This parameter is only allowed for the GET and HEAD methods on
@@ -346,8 +346,8 @@ RFC: xxxx
 Index           Capability Identifier
 ---------------------------------------------------------------------
 
-:count       urn:ietf:params:restconf:capability:count:1.0
-:skip        urn:ietf:params:restconf:capability:skip:1.0
+:limit       urn:ietf:params:restconf:capability:limit:1.0
+:offset      urn:ietf:params:restconf:capability:offset:1.0
 :direction   urn:ietf:params:restconf:capability:direction:1.0
 :sort        urn:ietf:params:restconf:capability:sort:1.0
 :where       urn:ietf:params:restconf:capability:where:1.0
