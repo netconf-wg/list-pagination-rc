@@ -469,11 +469,12 @@ Index           Capability Identifier
       <!--<?rfc include="reference.RFC.6991.xml"?> YANG Types-->
     </references>
     <section title="Example YANG Module">
-      <t>The examples within this document use the "example-module" YANG
-        module defined in <relref section="A" target="I-D.wwlh-netconf-list-pagination-nc"/>.</t>
+      <t>The examples within this document use the "example-social" YANG
+        module defined in <relref section="A.1" target="I-D.wwlh-netconf-list-pagination"/>.</t>
     </section>
-    <section title="Example Data">
-      <t>
+    <section title="Example Data Set">
+      <t>The Example Data Set within this document uses one defined in <relref section="A.2" target="I-D.wwlh-netconf-list-pagination"/>.</t>
+      <t> 
         <figure>
           <artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-data-set.xml)
@@ -523,87 +524,9 @@ INSERT_TEXT_FROM_FILE(includes/ex-api-none-rpc-reply.json)
           </t>
         </section>
       </section>
-      <section title="Just the &quot;count&quot; Parameter">
-        <t>In this example, the client requests the first two "skill"
-        resources for a given admin resource.
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-count-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-count-rpc-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
-      <section title="Just the &quot;skip&quot; Parameter">
-        <t>In this example, the client requests the next two skills resource,
-        i.e., two skills resource starting from two.
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-skip-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-skip-rpc-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
-      <section title="Just the &quot;direction&quot; Parameter">
-        <t>In this example, the client requests the first two "skill"
-        resources in the "forward" direction for a given admin:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-direction-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-direction-rpc-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
-      <section title="Just the &quot;sort&quot; Parameter">
-        <t>In this example, the client requests the first 2 "skill" resources
-        sorted by name for a given admin:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-sort-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-sort-rpc-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
-      <section title="Combination of &quot;where&quot; + &quot;count&quot;">
-        <t>In this example, the client requests the first 2 "skill" resources
-        from the selected skill resource list for a given admin:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-where-count-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-where-count-rpc-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
-      <section title="Combination of &quot;where&quot; + &quot;skip&quot; + &quot;count&quot;">
-        <t>In this example, the client requests the first 2 "skill" resources
-        from the selected "skill" resource list for a given admin:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-where-skip-count-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-where-skip-count-rpc-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
-      <section title="Combination of &quot;where&quot; + &quot;sort&quot; + &quot;skip&quot;,&quot;count&quot;">
-        <t>In this example, the client requests the first 2 "skill" resources
-        from the selected skill resources list for a given admin:
+      <section title="Combination of &quot;where&quot; + &quot;sort&quot; + &quot;offset&quot;,&quot;limit&quot;">
+        <t>In this example, the client requests the first 2 "post" resources
+        from the selected skill resources list,starting from one, order by timestamp:
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-where-sort-skip-count-rpc.xml)
 ]]></artwork></figure>
