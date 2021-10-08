@@ -149,7 +149,7 @@
 
       <section title="Query Parameters">
         <t>Ths document extends <relref section="4.8" target="RFC8040"/>
-          to add new query parameters "count", "skip", "direction",
+          to add new query parameters "limit", "offset", "direction",
           "sort", and "where".</t>
         <t>
           <figure>
@@ -157,11 +157,11 @@
 +-----------+---------+-----------------------------------------+
 | Name      | Methods | Description                             |
 +-----------+---------+-----------------------------------------+
-| count     | GET,    | Limits the number of entries returned.  |
+| limit     | GET,    | Limits the number of entries returned.  |
 |           | HEAD    | If not specified, the number of entries |
-|           |         | that may be returned in unbounded.      |
+|           |         | that may be returned is unbounded.      |
 |           |         |                                         |
-| skip      | GET,    | Indicates the number of entries in the  |
+| offset    | GET,    | Indicates the number of entries in the  |
 |           | HEAD    | result set that should the skipped over |
 |           |         | when preparing the response.  If not    |
 |           |         | specified, then no entries in the       |
@@ -188,9 +188,9 @@
           </figure>
         </t>
 
-        <section title="The &quot;count&quot; Query Parameter">
-          <t>The "count" query parameter limits the number of entries
-            from the working result set (i.e., after the "skip"
+        <section title="The &quot;limit&quot; Query Parameter">
+          <t>The "limit" query parameter limits the number of entries
+            from the working result set (i.e., after the "offset"
             parameter has been applied) that are returned.</t>
           <t>The allowed values are positive integers.</t>
           <t>This parameter is only allowed for the GET and HEAD methods on
@@ -203,11 +203,11 @@
             leaf-lists.</t>
         </section>
 
-        <section title="The &quot;skip&quot; Query Parameter">
-          <t>The "skip" query parameter indicates the number of entries
+        <section title="The &quot;offset&quot; Query Parameter">
+          <t>The "offset" query parameter indicates the number of entries
             in the working result set (i.e., after the "direction"
             parameter has been applied) that should be skipped.</t>
-          <t>The allowed values are positive integers.  If the skip
+          <t>The allowed values are positive integers.  If the offset
             value exceeds the number of entries in the working result
             set, then "416 Range Not Satisfiable" status-line is returned.</t>
           <t>This parameter is only allowed for the GET and HEAD methods on
@@ -258,7 +258,7 @@
             identifier does not exist in the schema, or is in any
             way optional or conditional in the schema, then a "400
             Bad Request" status-line is returned.  For "config false"
-            lists, the node idenitfier MUST point to a node having
+            lists, the node identifier MUST point to a node having
             the "indexed" extension statement applied to it
             (see Node Tags).</t>
           <t>This parameter is only allowed for the GET and HEAD methods on
@@ -273,7 +273,7 @@
         <section title="The &quot;where&quot; Query Parameter">
           <t>The "where" query parameter specifies a filter expression
             that result set entries must match.</t>
-          <t>The allowed values are Xpath 1.0 expressions MAY be
+          <t>The allowed values are XPath 1.0 expressions and MAY be
             constrained for "config true" and/or "config false" lists,
             in general or on an instance-by-instance basis, as described
             in some TBD section.</t>
@@ -354,8 +354,8 @@ RFC: xxxx
 Index           Capability Identifier
 ---------------------------------------------------------------------
 
-:count       urn:ietf:params:restconf:capability:count:1.0
-:skip        urn:ietf:params:restconf:capability:skip:1.0
+:limit       urn:ietf:params:restconf:capability:limit:1.0
+:offset      urn:ietf:params:restconf:capability:offset:1.0
 :direction   urn:ietf:params:restconf:capability:direction:1.0
 :sort        urn:ietf:params:restconf:capability:sort:1.0
 :where       urn:ietf:params:restconf:capability:where:1.0
@@ -477,11 +477,12 @@ Index           Capability Identifier
       <!--<?rfc include="reference.RFC.6991.xml"?> YANG Types-->
     </references>
     <section title="Example YANG Module">
-      <t>The examples within this document use the "example-module" YANG
-        module defined in <relref section="A" target="I-D.wwlh-netconf-list-pagination-nc"/>.</t>
+      <t>The examples within this document use the "example-social" YANG
+        module defined in <relref section="A.1" target="I-D.wwlh-netconf-list-pagination"/>.</t>
     </section>
-    <section title="Example Data">
-      <t>
+    <section title="Example Data Set">
+      <t>The Example Data Set within this document uses one defined in <relref section="A.2" target="I-D.wwlh-netconf-list-pagination"/>.</t>
+      <t> 
         <figure>
           <artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-data-set.xml)
@@ -531,87 +532,9 @@ INSERT_TEXT_FROM_FILE(includes/ex-api-none-rpc-reply.json)
           </t>
         </section>
       </section>
-      <section title="Just the &quot;count&quot; Parameter">
-        <t>In this example, the client requests the first two "skill"
-        resources for a given admin resource.
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-count-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-count-rpc-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
-      <section title="Just the &quot;skip&quot; Parameter">
-        <t>In this example, the client requests the next two skills resource,
-        i.e., two skills resource starting from two.
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-skip-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-skip-rpc-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
-      <section title="Just the &quot;direction&quot; Parameter">
-        <t>In this example, the client requests the first two "skill"
-        resources in the "forward" direction for a given admin:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-direction-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-direction-rpc-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
-      <section title="Just the &quot;sort&quot; Parameter">
-        <t>In this example, the client requests the first 2 "skill" resources
-        sorted by name for a given admin:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-sort-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-sort-rpc-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
-      <section title="Combination of &quot;where&quot; + &quot;count&quot;">
-        <t>In this example, the client requests the first 2 "skill" resources
-        from the selected skill resource list for a given admin:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-where-count-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-where-count-rpc-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
-      <section title="Combination of &quot;where&quot; + &quot;skip&quot; + &quot;count&quot;">
-        <t>In this example, the client requests the first 2 "skill" resources
-        from the selected "skill" resource list for a given admin:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-where-skip-count-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-where-skip-count-rpc-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
-      <section title="Combination of &quot;where&quot; + &quot;sort&quot; + &quot;skip&quot;,&quot;count&quot;">
-        <t>In this example, the client requests the first 2 "skill" resources
-        from the selected skill resources list for a given admin:
+      <section title="Combination of &quot;where&quot; + &quot;sort&quot; + &quot;offset&quot;,&quot;limit&quot;">
+        <t>In this example, the client requests the first 2 "post" resources
+        from the selected skill resources list,starting from one, order by timestamp:
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-where-sort-skip-count-rpc.xml)
 ]]></artwork></figure>
