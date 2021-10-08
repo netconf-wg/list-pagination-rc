@@ -70,8 +70,7 @@
       a large list, in a manner that is most efficient for the
       application.</t>
       <t>This document Updates RFC 8040 to declare "list" and "leaf-list" as
-      resource targets for the RESTCONF operations such as GET, POST
-      operations.</t>
+      resource targets for the RESTCONF GET operation.</t>
     </abstract>
   </front>
   <middle>
@@ -85,7 +84,7 @@
         optionally filtered and/or sorted "list" and "leaf-list" entries.</t>
       <t>This document Updates RFC 8040 to declare "list" and "leaf-list" as
         valid resource targets for the RESTCONF GET operation.</t>
-      <t>The RPC operation defined in <xref target="I-D.wwlh-netconf-list-pagination-nc"/>
+      <t>The RPC-based operations defined in <xref target="I-D.wwlh-netconf-list-pagination-nc"/>
         may be optionally used if the RESTCONF server implements the
         "ietf-netconf-list-pagination" module.</t>
       <section title="Terminology">
@@ -118,7 +117,7 @@
             value for binary data that has been base64 encoded (e.g.,
             "BASE64VALUE=“).  This placeholder value is used as real
             base64 encoded structures are often many lines long and
-            hence distracting to the example being presented.<.t>
+            hence distracting to the example being presented.</t>
         </section>
     </section>
 
@@ -128,7 +127,7 @@
       <section title="Resource Targets">
         <t>This document extends <relref section="3.5" target="RFC8040"/>
           to add "list" and "leaf-list" nodes (not just their entries)
-          as data resources for "GET" operations.</t>
+          as data resources for the "GET" operation.</t>
       </section>
 
       <section title="Media Type">
@@ -289,55 +288,8 @@
       </section>
     </section> <!-- Updates to RFC 8040 -->
 
-    <section title="The &quot;ietf-restconf-list-pagination&quot; Module">
-      <t>The "ietf-restconf-list-pagination" module is currently only used
-        by servers to indicate that they support pagination on YANG "list"
-        and "leaf-list" nodes.</t>
-      <figure>
-        <preamble>&lt;CODE BEGINS&gt; file "ietf-restconf-list-pagination@YYYY-MM-DD.yang"</preamble>
-        <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(ietf-restconf-list-pagination@YYYY-MM-DD.yang)
-]]></artwork>
-        <postamble>&lt;CODE ENDS&gt;</postamble>
-      </figure>
-    </section>
 
     <section title="IANA Considerations">
-
-      <section title="The &quot;IETF XML&quot; Registry">
-        <t>This document registers one URI in the "ns" subregistry of
-            the IETF XML Registry <xref target="RFC3688"/> maintained at
-            <eref target="https://www.iana.org/assignments/xml-registry/xml-registry.xhtml#ns"/>.
-            Following the format in <xref target="RFC3688"/>, the following
-            registration is requested:</t>
-        <t>
-          <figure align="center">
-            <artwork>
-URI: urn:ietf:params:xml:ns:yang:ietf-restconf-list-pagination
-Registrant Contact: The IESG.
-XML: N/A, the requested URI is an XML namespace.
-          </artwork>
-          </figure>
-        </t>
-      </section>
-
-      <section title="The &quot;YANG Module Names&quot; Registry">
-        <t>This document registers one YANG module in the YANG Module
-            Names registry <xref target="RFC6020"/> maintained at
-            <eref target="https://www.iana.org/assignments/yang-parameters/yang-parameters.xhtml"/>.
-            Following the format defined in <xref target="RFC6020"/>, the below
-            registration is requested:</t>
-        <t>
-          <figure align="center">
-            <artwork>
-name: ietf-restconf-list-pagination
-namespace: urn:ietf:params:xml:ns:yang:ietf-restconf-list-pagination
-prefix: rlpg
-RFC: xxxx
-          </artwork>
-          </figure>
-        </t>
-      </section>
 
       <section title="The &quot;RESTCONF Capability URNs&quot; Registry">
         <t>This document registers five capabilities in the RESTCONF
@@ -435,23 +387,14 @@ Index           Capability Identifier
         </section>
       </section>
     </section>
+
     <section anchor="security" title="Security Considerations">
-      <section title="The &quot;ietf-restconf-list-pagination&quot; YANG Module">
-        <t>The YANG module defined in this document extends the base operations
-          for NETCONF <xref target="RFC6241"/> and RESTCONF <xref target="RFC8040"/>.
-          The lowest NETCONF layer is the secure transport layer, and the
-          mandatory-to-implement secure transport is Secure Shell (SSH)
-          <xref target="RFC6242"/>. The lowest RESTCONF layer is HTTPS,
-          and the mandatory-to-implement secure transport is TLS
-          <xref target="RFC8446"/>.</t>
-        <t>The Network Configuration Access Control Model (NACM) <xref target="RFC8341"/>
-      provides the means to restrict access for particular NETCONF users to a
-      preconfigured subset of all available NETCONF protocol operations and
-      content.</t>
-        <t>The security constraints for the base RESTCONF protocol (see
-      <relref section="12" target="RFC8040"/>) apply to the new RESTCONF target
-            resources defined in this document.</t>
-      </section>
+      <t>This document introduces not protocol operations for paging
+        through data already provided by the RESTCONF protocol, and
+        hence does not introduce any new security considerations.</t>
+      <t>This document does not define a YANG module and hence there
+        are no data modeling considerations beyond those discussed in
+        <xref target="I-D.wwlh-netconf-list-pagination"/>.</t>
     </section>
   </middle>
   <back>
@@ -467,6 +410,17 @@ Index           Capability Identifier
       <?rfc include="reference.RFC.8342.xml"?>
     </references>
     <references title="Informative References">
+      <!-- START PLACEHOLDER UNTIL THE LP draft is submitted
+        <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.wwlh-netconf-list-pagination.xml"/>
+      -->
+      <reference anchor="I-D.wwlh-netconf-list-pagination" target="FIXME">
+        <front>
+          <title>List Pagination...</title>
+          <author/>
+        </front>
+      </reference>
+      <!-- END PLACEHOLDER UNTIL THE LP draft is submitted -->
+
       <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.wwlh-netconf-list-pagination-nc.xml"/>
       <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-restconf-collection.xml"/>
       <?rfc include="reference.RFC.4855.xml"?>
@@ -478,10 +432,10 @@ Index           Capability Identifier
     </references>
     <section title="Example YANG Module">
       <t>The examples within this document use the "example-social" YANG
-        module defined in <relref section="A.1" target="I-D.wwlh-netconf-list-pagination"/>.</t>
+        module defined in <relref section="A.1" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
     </section>
     <section title="Example Data Set">
-      <t>The Example Data Set within this document uses one defined in <relref section="A.2" target="I-D.wwlh-netconf-list-pagination"/>.</t>
+      <t>The Example Data Set within this document uses one defined in <relref section="A.2" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
       <t> 
         <figure>
           <artwork><![CDATA[
@@ -567,7 +521,7 @@ dcornejo@gmail.com</artwork>
       list (ordered by first name):
         Andy Bierman,
         Martin Bj&ouml;rklund,
-        Robert Varga
+        and Robert Varga
       </t>
     </section>
   </back>
