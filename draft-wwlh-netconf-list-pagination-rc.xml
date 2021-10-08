@@ -27,7 +27,7 @@
     </title>
 
     <author fullname="Kent Watsen" initials="K." surname="Watsen">
-      <organization>Watsen Network</organization>
+      <organization>Watsen Networks</organization>
       <address>
         <email>kent+ietf@watsen.net</email>
       </address>
@@ -58,7 +58,7 @@
       </address>
     </author>
 
-    <date year="2020"/>
+    <date/>
     <area>OPS Area</area>
     <workgroup>NETCONF Working Group</workgroup>
 
@@ -112,6 +112,14 @@
         <t>The following terms are defined in this document as follows:</t>
         <t/>
       </section>
+
+        <section title="Conventions">
+          <t>Various examples used in this document use a placeholder
+            value for binary data that has been base64 encoded (e.g.,
+            "BASE64VALUE=“).  This placeholder value is used as real
+            base64 encoded structures are often many lines long and
+            hence distracting to the example being presented.<.t>
+        </section>
     </section>
 
     <!-- intro -->
@@ -243,7 +251,7 @@
         </section>
 
         <section title="The &quot;sort&quot; Query Parameter">
-          <t>The "sort" query parameter indicates the descendent node
+          <t>The "sort" query parameter indicates the descendant node
             that the working result set (i.e., after the "where"
             parametere has been applied) should be sorted by.</t>
           <t>The allowed values are node identifiers.  If the 
@@ -338,7 +346,7 @@ RFC: xxxx
           Following the instructions defined in <relref section="11.4" target="RFC8040"/>,
           the below registrations are requested:</t>
 
-        <t>All of the registrations are to use this document (RFC XXXX)
+        <t>All the registrations are to use this document (RFC XXXX)
           for the "Reference" value.</t>
         <t>
           <figure>
