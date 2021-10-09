@@ -482,13 +482,6 @@ Index           Capability Identifier
     </section>
     <section title="Example Data Set">
       <t>The Example Data Set within this document uses one defined in <relref section="A.2" target="I-D.wwlh-netconf-list-pagination"/>.</t>
-      <t> 
-        <figure>
-          <artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-data-set.xml)
-]]></artwork>
-            </figure>
-          </t>
     </section>
     <section title="Example Queries">
       <section title="No Query Parameters">
