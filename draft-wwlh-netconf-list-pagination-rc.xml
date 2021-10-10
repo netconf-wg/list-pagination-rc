@@ -109,20 +109,20 @@
     <section title="Updates to RFC8040" anchor="updates">
 
       <section title="Resource Targets">
-        <t>This document extends <relref section="3.5" target="RFC8040"/>
+        <t>This document extends <relref section="3.5" target="RFC8040" relative="#FIXME"/>
           to add "list" and "leaf-list" nodes (not just their entries)
           as valid data resources for the "GET" and "DELETE" operations.</t>
       </section>
 
       <section title="Media Type">
-        <t>This document extends <relref section="3.2" target="RFC8040"/>
+        <t>This document extends <relref section="3.2" target="RFC8040" relative="#FIXME"/>
           to add a new media type, "application/yang-data+xml-list", to
           encode "list" and "leaf-list" nodes in XML.</t>
         <t>The "application/yang-data+xml-list" media-type defines a
           pseudo top-level element called "xml-list" that is used to
           wrap the response set, thus ensuring that a single top-level
           element is returned for the XML encoding", as required by <relref 
-          section="4.3" target="RFC8040"/>.</t>
+          section="4.3" target="RFC8040" relative="#FIXME"/>.</t>
         <t>For JSON, the existing "application/yang-data+json" media type is
           sufficient, as the JSON format has built-in support for encoding
           arrays.</t>
@@ -131,7 +131,7 @@
       </section>
 
       <section title="Query Parameters">
-        <t>Ths document extends <relref section="4.8" target="RFC8040"/>
+        <t>Ths document extends <relref section="4.8" target="RFC8040" relative="#FIXME"/>
           to add new query parameters "limit", "offset", "direction",
           "sort", "where", and "sublist-list".</t>
         <t>These six query parameters coorespond to those defined in
@@ -241,7 +241,7 @@
         <t>This document registers six capabilities in the RESTCONF
           Capability URNs <xref target="RFC8040"/> maintained at
           <eref target="https://www.iana.org/assignments/restconf-capability-urns/restconf-capability-urns.xhtml"/>.
-          Following the instructions defined in <relref section="11.4" target="RFC8040"/>,
+          Following the instructions defined in <relref section="11.4" target="RFC8040" relative="#FIXME"/>,
           the below registrations are requested:</t>
 
         <t>All the registrations are to use this document (RFC XXXX)
@@ -378,7 +378,7 @@ Index           Capability Identifier
         module defined in <relref section="A.1" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
     </section>
     <section title="Example Data Set">
-      <t>The Example Data Set within this document uses one defined in <relref section="A.2" target="I-D.wwlh-netconf-list-pagination"/>.</t>
+      <t>The Example Data Set within this document uses one defined in <relref section="A.2" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
     </section>
     <section title="Example Queries">
       <section title="No Query Parameters">
