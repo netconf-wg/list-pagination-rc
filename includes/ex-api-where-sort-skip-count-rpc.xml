@@ -1,3 +1,0 @@
-GET /restconf/ds/ietf-datastores:running/example-social:members/member/posts?where=//stats//joined[starts-with(@timestamp,'2020')]&sort=timestamp&offset=1&limit=2  HTTP/1.1
-Host: example.com
-Accept: application/yang-data+xml-list

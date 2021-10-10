@@ -1,3 +1,0 @@
-GET /restconf/ds/ietf-datastores:running/example-module:members/member=bob/posts  HTTP/1.1
-Host: example.com
-Accept: application/yang-data+json-list

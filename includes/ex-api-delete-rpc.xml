@@ -1,0 +1,3 @@
+DELETE /restconf/ds/ietf-datastores:running/example-social:members/member=bob/favorites/decimal64-numbers HTTP/1.1
+Host: example.com
+Accept: application/yang-data+xml
