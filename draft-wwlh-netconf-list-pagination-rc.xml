@@ -95,7 +95,6 @@
           when, and only when, they appear in all capitals, as shown here.</t>
       </section>
 
-      <!--
       <section title="Conventions">
         <t>Various examples used in this document use a placeholder
           value for binary data that has been base64 encoded (e.g.,
@@ -103,7 +102,6 @@
           base64 encoded structures are often many lines long and
           hence distracting to the example being presented.</t>
         </section>
-      -->
     </section> <!-- intro -->
 
     <section title="Updates to RFC8040" anchor="updates">
@@ -389,7 +387,7 @@ Index           Capability Identifier
       <t>The Example Data Set within this document uses the one defined in <relref section="A.2" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
     </section>
     <section title="Example Queries">
-      <section title='GET with all list pagination query parameters'>
+      <section title='List pagination with all query parameters'>
         <t>This example mimics that <relref section="A.3.7" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.xml)
