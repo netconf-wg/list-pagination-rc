@@ -64,8 +64,8 @@
 
     <abstract>
       <t>This document defines a mapping of the list pagination mechanism
-        defined in <xref target="I-D.wwlh-netconf-list-pagination-nc"/>
-        RESTCONF <xref target="RFC8040"/>.</t>
+        defined in <xref target="I-D.wwlh-netconf-list-pagination"/>
+        to RESTCONF <xref target="RFC8040"/>.</t>
       <t>This document updates RFC 8040, to declare "list" and "leaf-list" as
         valid resource targets for the RESTCONF GET and DELETE
         operations, to define GET query parameters necessary
@@ -78,14 +78,14 @@
 
       <t>This document defines a mapping of the list pagination mechanism
         defined in <xref target="I-D.wwlh-netconf-list-pagination"/>
-        RESTCONF <xref target="RFC8040"/>.</t>
+        to RESTCONF <xref target="RFC8040"/>.</t>
 
       <t>This document updates RFC 8040, as described in <xref target="updates"/>.</t>
 
       <t>Declaring "list" and "leaf-list" as valid resource targets
         for the GET operation is necessary for list pagination.  Declaring
-        these nodes as valid resource targets for the DELETE operation is
-        merely to complete the solution for RESTCONF.</t>
+        these nodes as valid resource targets for the DELETE operation 
+        merely completes the solution for RESTCONF.</t>
 
       <section title="Terminology">
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
@@ -104,7 +104,7 @@
         </section>
     </section> <!-- intro -->
 
-    <section title="Updates to RFC8040" anchor="updates">
+    <section title="Updates to RFC 8040" anchor="updates">
 
       <section title="Resource Targets">
         <t>This document extends <relref section="3.5" target="RFC8040" relative="#FIXME"/>
@@ -124,7 +124,7 @@
         <t>For JSON, the existing "application/yang-data+json" media type is
           sufficient, as the JSON format has built-in support for encoding
           arrays.</t>
-        <t>The "application/yang-data+xml-list" media type is registrered
+        <t>The "application/yang-data+xml-list" media type is registered
           in <xref target="media-type"/>.</t>
       </section>
 
@@ -357,8 +357,7 @@ Index           Capability Identifier
       <?rfc include="reference.RFC.8040.xml"?>
       <?rfc include="reference.RFC.8174.xml"?>
       <!--<?rfc include="reference.RFC.8342.xml"?>-->
-    </references>
-    <references title="Informative References">
+
       <!-- START PLACEHOLDER UNTIL THE LP draft is submitted
         <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.wwlh-netconf-list-pagination.xml"/>
       -->
@@ -369,8 +368,10 @@ Index           Capability Identifier
         </front>
       </reference>
       <!-- END PLACEHOLDER UNTIL THE LP draft is submitted -->
+    </references>
+    <references title="Informative References">
 
-      <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.wwlh-netconf-list-pagination-nc.xml"/>
+        <!--<xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.wwlh-netconf-list-pagination-nc.xml"/>-->
       <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-restconf-collection.xml"/>
       <?rfc include="reference.RFC.4855.xml"?>
       <?rfc include="reference.RFC.6838.xml"?>
@@ -384,7 +385,8 @@ Index           Capability Identifier
         module defined in <relref section="A.1" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
     </section>
     <section title="Example Data Set">
-      <t>The Example Data Set within this document uses the one defined in <relref section="A.2" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
+      <t>The Example Data Set used by the examples is defined in
+        <relref section="A.2" target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
     </section>
     <section title="Example Queries">
       <section title='List pagination with all query parameters'>
@@ -409,10 +411,10 @@ INSERT_TEXT_FROM_FILE(includes/ex-api-delete-rpc.xml)
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-delete-rpc-reply.xml)
 ]]></artwork></figure>
-      </t>
+        </t>
       </section>
-    </section>
-    <!-- Example Queries -->
+    </section> <!-- Example Queries -->
+
     <!--
     <section title="Contributors" numbered="no">
       <figure>
