@@ -161,7 +161,7 @@
 |           |         | specified, then the result set is       |
 |           |         | traversed in the "forwards" direction.  |
 |           |         |                                         |
-| sort      | GET,    | Indicates the node name that the result |
+| sort-by   | GET,    | Indicates the node name that the result |
 |           | HEAD    | set should be sorted by.  If not        |
 |           |         | specified, then the result set's        |
 |           |         | default order is used, per YANG's       |
