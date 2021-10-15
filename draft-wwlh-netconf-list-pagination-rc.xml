@@ -135,10 +135,10 @@
       </section>
 
       <section title="Query Parameters">
-        <t>Ths document extends <relref section="4.8" target="RFC8040" relative="#FIXME"/>
+        <t>This document extends <relref section="4.8" target="RFC8040" relative="#FIXME"/>
           to add new query parameters "limit", "offset", "direction",
           "sort", "where", and "sublist-list".</t>
-        <t>These six query parameters coorespond to those defined in
+        <t>These six query parameters correspond to those defined in
           Sections 3.1 and 3.2 in <xref target="I-D.wwlh-netconf-list-pagination"/>.</t>
         <t>
           <figure>
@@ -172,7 +172,7 @@
 |           |         | not specified, then no entries are      |
 |           |         | filtered from the result set.           |
 |           |         |                                         |
-| sublist-  | GET,    | Limits te number of entries returned    |
+| sublist-  | GET,    | Limits the number of entries returned   |
 |  limit    | HEAD    | returned for descendent lists and       |
 |           |         | leaf-lists. If not specified, the       |
 |           |         | number of entries that may be returned  |
@@ -197,7 +197,7 @@
           <t>The "limit" query parameter corresponds to the "limit"
             parameter defined in <relref section="3.1.5"
             target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
-          <t>No additional RESTCONF-specific conderations are defined
+          <t>No additional RESTCONF-specific considerations are defined
             for this query parameter.</t>
         </section>
 
@@ -433,7 +433,7 @@ dcornejo@gmail.com</artwork>
       <t>This work has benefited from the discussions of restconf resource
       collection over the years, in particular,
       <xref target="I-D.ietf-netconf-restconf-collection"/>. The
-      authors additionaly thank the following for lively discussions on
+      authors additionally thank the following for lively discussions on
       list (ordered by first name):
         Andy Bierman,
         Martin Bj&ouml;rklund,
