@@ -57,6 +57,12 @@
         <email>flycoolman@gmail.com</email>
       </address>
     </author>
+    <author fullname="Per Andersson" initials="P." surname="Andersson">
+      <organization>Cisco Systems</organization>
+      <address>
+        <email>perander@cisco.com</email>
+      </address>
+    </author>
 
     <date/>
     <area>OPS Area</area>
@@ -418,10 +424,7 @@ INSERT_TEXT_FROM_FILE(includes/ex-api-delete-rpc-reply.xml)
     <!--
     <section title="Contributors" numbered="no">
       <figure>
-        <artwork>Per Andersson
-perander@cisco.com
-
-David Cornejo
+        <artwork>David Cornejo
 dcornejo@gmail.com</artwork>
       </figure>
     </section>
