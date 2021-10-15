@@ -344,7 +344,7 @@ Index           Capability Identifier
     </section>
 
     <section anchor="security" title="Security Considerations">
-      <t>This document introduces not protocol operations for paging
+      <t>This document introduces protocol operations for paging
         through data already provided by the RESTCONF protocol, and
         hence does not introduce any new security considerations.</t>
       <t>This document does not define a YANG module and hence there
