@@ -28,7 +28,7 @@ next := $(draft)-$(next_ver)
 
 .PHONY: latest submit clean
 
-#latest: $(draft).txt $(draft).html
+latest: $(draft).txt $(draft).html
 
 default: $(next).xml $(next).txt $(next).html
 
