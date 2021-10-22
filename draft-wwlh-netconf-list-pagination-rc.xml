@@ -197,51 +197,61 @@
           <t>The "limit" query parameter corresponds to the "limit"
             parameter defined in <relref section="3.1.5"
             target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
-          <t>No additional RESTCONF-specific considerations are defined
-            for this query parameter.</t>
+          <t>If the limit value is invalid, then a "400 Bad Request"
+            status-line MUST be returned with the error-type value
+            "application" and error-tag value "invalid-value".</t>
         </section>
 
         <section title='The "offset" Query Parameter'>
           <t>The "offset" query parameter corresponds to the "offset"
             parameter defined in <relref section="3.1.4"
             target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
-          <t>If the offset value exceeds the number of entries in the working result
-            set, then a "416 Range Not Satisfiable" status-line MUST be returned with
-            the error-tag value "invalid-value".</t>
+          <t>If the offset value is invalid, a "400 Bad Request" status-line
+            MUST be returned with the error-type value "application" and
+            error-tag value "invalid-value".</t>
+          <t>If the offset value exceeds the number of entries in the
+            working result set, then a "416 Range Not Satisfiable"
+            status-line MUST be returned with the error-type value
+            "application", error-tag value "invalid-value", and SHOULD also
+            include the "offset-out-of-range" identity as error-app-tag
+            value.</t>
         </section>
 
         <section title='The "direction" Query Parameter'>
           <t>The "direction" query parameter corresponds to the "direction"
             parameter defined in <relref section="3.1.3"
             target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
-          <t>No additional RESTCONF-specific conderations are defined
-            for this query parameter.</t>
+          <t>If the direction value is invalid, then a "400 Bad Request"
+            status-line MUST be returned with the error-type value
+            "application" and error-tag value "invalid-value".</t>
         </section>
 
         <section title='The "sort-by" Query Parameter'>
           <t>The "sort-by" query parameter corresponds to the "sort-by"
             parameter defined in <relref section="3.1.2"
             target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
-          <t>If the specified node identifier is invalid, then a
-            "400 Bad Request" status-line MUST be returned with
-            the error-tag value "invalid-value".</t>
+          <t>If the specified node identifier is invalid, then a "400 Bad
+            Request" status-line MUST be returned with the error-type value
+            "application" and error-tag value "invalid-value".</t>
+
         </section>
 
         <section title='The "where" Query Parameter'>
           <t>The "where" query parameter corresponds to the "where"
             parameter defined in <relref section="3.1.1"
             target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
-          <t>If the specified XPath expression is invalid, then
-            a "400 Bad Request" status-line MUST be returned with
-            the error-tag value "invalid-value".</t>
+          <t>If the specified XPath expression is invalid, then a "400 Bad
+            Request" status-line MUST be returned with the error-type value
+            "application" and error-tag value "invalid-value".</t>
         </section>
 
         <section title='The "sublist-limit" Query Parameter'>
           <t>The "sublist-limit" query parameter corresponds to the
             "sublist-limit" parameter defined in <relref section="3.2.1"
             target="I-D.wwlh-netconf-list-pagination" relative="#FIXME"/>.</t>
-          <t>No additional RESTCONF-specific conderations are defined
-            for this query parameter.</t>
+          <t>If the sumlist-limit value is invalid, then a "400 Bad Request"
+            status-line MUST be returned with the error-type value
+            "application" and error-tag value "invalid-value".</t>
         </section>
       </section>
     </section> <!-- Updates to RFC 8040 -->
