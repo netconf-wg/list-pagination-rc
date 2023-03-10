@@ -136,7 +136,7 @@
 
       <section title="Query Parameters">
         <t>This document extends <relref section="4.8" target="RFC8040" relative="#FIXME"/>
-          to add new query parameters "limit", "offset", "direction",
+          to add new query parameters "limit", "offset", "cursor", "direction",
           "sort-by", "where", and "sublist-list".</t>
         <t>These six query parameters correspond to those defined in
           Sections 3.1 and 3.2 in <xref target="I-D.ietf-netconf-list-pagination"/>.</t>
@@ -155,6 +155,12 @@
 |           |         | when preparing the response.  If not    |
 |           |         | specified, then no entries in the       |
 |           |         | result set are skipped.                 |
+|           |         |                                         |
+| cursor    | GET,    | Indicates where to start the working    |
+|           | HEAD    | result set, the previous entries are    |
+|           |         | skipped over.  If not specified, then   |
+|           |         | no entries in the result set are        |
+|           |         | skipped over.                           |
 |           |         |                                         |
 | direction | GET,    | Indicates the direction that the result |
 |           | HEAD    | set is to be traversed.  If not         |
@@ -195,7 +201,7 @@
 
         <section title='The "limit" Query Parameter'>
           <t>The "limit" query parameter corresponds to the "limit"
-            parameter defined in <relref section="3.1.5"
+            parameter defined in <relref section="3.1.6"
             target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
           <t>If the limit value is invalid, then a "400 Bad Request"
             status-line MUST be returned with the error-type value
@@ -214,6 +220,17 @@
             status-line MUST be returned with the error-type value
             "application", error-tag value "invalid-value", and SHOULD also
             include the "offset-out-of-range" identity as error-app-tag
+            value.</t>
+        </section>
+
+        <section title='The "cursor" Query Parameter'>
+          <t>The "cursor" querey parameter corresponds to the "cursor"
+            parameter defined in <relref section="3.1.5"
+            target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
+          <t>If the cursor value is unknown, i.e. the key does not exist,
+            a "404 Not Found" status-line MUST be returned with the error-type
+            value "application" and error-tag value "invalid-value", and SHOULD
+            also include the "cursor-not-found" identity as error-app-tag
             value.</t>
         </section>
 
@@ -275,6 +292,7 @@ Index           Capability Identifier
 ---------------------------------------------------------------------
 :limit          urn:ietf:params:restconf:capability:limit:1.0
 :offset         urn:ietf:params:restconf:capability:offset:1.0
+:cursor         urn:ietf:params:restconf:capability:cursor:1.0
 :direction      urn:ietf:params:restconf:capability:direction:1.0
 :sort-by        urn:ietf:params:restconf:capability:sort-by:1.0
 :where          urn:ietf:params:restconf:capability:where:1.0
