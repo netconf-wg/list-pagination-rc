@@ -137,53 +137,63 @@
       <section title="Query Parameters">
         <t>This document extends <relref section="4.8" target="RFC8040" relative="#FIXME"/>
           to add new query parameters "limit", "offset", "cursor", "direction",
-          "sort-by", "where", and "sublist-list".</t>
+          "sort-by", "sort-locale-collate", "where", "snapshot", and
+          "sublist-list".</t>
         <t>These six query parameters correspond to those defined in
           Sections 3.1 and 3.2 in <xref target="I-D.ietf-netconf-list-pagination"/>.</t>
         <t>
           <figure>
             <artwork><![CDATA[
-+-----------+---------+-----------------------------------------+
-| Name      | Methods | Description                             |
-+-----------+---------+-----------------------------------------+
-| limit     | GET,    | Limits the number of entries returned.  |
-|           | HEAD    | If not specified, the number of entries |
-|           |         | that may be returned is unbounded.      |
-|           |         |                                         |
-| offset    | GET,    | Indicates the number of entries in the  |
-|           | HEAD    | result set that should the skipped over |
-|           |         | when preparing the response.  If not    |
-|           |         | specified, then no entries in the       |
-|           |         | result set are skipped.                 |
-|           |         |                                         |
-| cursor    | GET,    | Indicates where to start the working    |
-|           | HEAD    | result set, the previous entries are    |
-|           |         | skipped over.  If not specified, then   |
-|           |         | no entries in the result set are        |
-|           |         | skipped over.                           |
-|           |         |                                         |
-| direction | GET,    | Indicates the direction that the result |
-|           | HEAD    | set is to be traversed.  If not         |
-|           |         | specified, then the result set is       |
-|           |         | traversed in the "forwards" direction.  |
-|           |         |                                         |
-| sort-by   | GET,    | Indicates the node name that the result |
-|           | HEAD    | set should be sorted by.  If not        |
-|           |         | specified, then the result set's        |
-|           |         | default order is used, per YANG's       |
-|           |         | "ordered-by" statement.                 |
-|           |         |                                         |
-| where     | GET,    | Specifies a filter expression that      |
-|           | HEAD    | result set entries must match.  If      |
-|           |         | not specified, then no entries are      |
-|           |         | filtered from the result set.           |
-|           |         |                                         |
-| sublist-  | GET,    | Limits the number of entries returned   |
-|  limit    | HEAD    | returned for descendent lists and       |
-|           |         | leaf-lists. If not specified, the       |
-|           |         | number of entries that may be returned  |
-|           |         | is unbounded.                           |
-+-----------+---------+-----------------------------------------+
++---------------------+---------+-----------------------------------------+
+| Name                | Methods | Description                             |
++---------------------+---------+-----------------------------------------+
+| limit               | GET,    | Limits the number of entries returned.  |
+|                     | HEAD    | If not specified, the number of entries |
+|                     |         | that may be returned is unbounded.      |
+|                     |         |                                         |
+| offset              | GET,    | Indicates the number of entries in the  |
+|                     | HEAD    | result set that should the skipped over |
+|                     |         | when preparing the response.  If not    |
+|                     |         | specified, then no entries in the       |
+|                     |         | result set are skipped.                 |
+|                     |         |                                         |
+| cursor              | GET,    | Indicates where to start the working    |
+|                     | HEAD    | result set, the previous entries are    |
+|                     |         | skipped over.  If not specified, then   |
+|                     |         | no entries in the result set are        |
+|                     |         | skipped over.                           |
+|                     |         |                                         |
+| direction           | GET,    | Indicates the direction that the result |
+|                     | HEAD    | set is to be traversed.  If not         |
+|                     |         | specified, then the result set is       |
+|                     |         | traversed in the "forwards" direction.  |
+|                     |         |                                         |
+| sort-by             | GET,    | Indicates the node name that the result |
+|                     | HEAD    | set should be sorted by.  If not        |
+|                     |         | specified, then the result set's        |
+|                     |         | default order is used, per YANG's       |
+|                     |         | "ordered-by" statement.                 |
+|                     |         |                                         |
+| sort-locale-collate | GET,    | Specifies the locale the server should  |
+|                     | HEAD    | use when collating the result set. If   |
+|                     |         | not specified, the server chooses what  |
+|                     |         | locale is used for collation.           |
+|                     |         |                                         |
+| where               | GET,    | Specifies a filter expression that      |
+|                     | HEAD    | result set entries must match.  If      |
+|                     |         | not specified, then no entries are      |
+|                     |         | filtered from the result set.           |
+|                     |         |                                         |
+| snapshot            | GET,    | Indicates that the server should take a |
+|                     | HEAD    | snapshot before paginating the result   |
+|                     |         | set.                                    |
+|                     |         |                                         |
+| sublist-            | GET,    | Limits the number of entries returned   |
+|  limit              | HEAD    | returned for descendent lists and       |
+|                     |         | leaf-lists. If not specified, the       |
+|                     |         | number of entries that may be returned  |
+|                     |         | is unbounded.                           |
++---------------------+---------+-----------------------------------------+
 ]]></artwork>
           </figure>
         </t>
@@ -201,7 +211,7 @@
 
         <section title='The "limit" Query Parameter'>
           <t>The "limit" query parameter corresponds to the "limit"
-            parameter defined in <relref section="3.1.6"
+            parameter defined in <relref section="3.1.7"
             target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
           <t>If the limit value is invalid, then a "400 Bad Request"
             status-line MUST be returned with the error-type value
@@ -210,7 +220,7 @@
 
         <section title='The "offset" Query Parameter'>
           <t>The "offset" query parameter corresponds to the "offset"
-            parameter defined in <relref section="3.1.4"
+            parameter defined in <relref section="3.1.5"
             target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
           <t>If the offset value is invalid, a "400 Bad Request" status-line
             MUST be returned with the error-type value "application" and
@@ -225,18 +235,22 @@
 
         <section title='The "cursor" Query Parameter'>
           <t>The "cursor" querey parameter corresponds to the "cursor"
-            parameter defined in <relref section="3.1.5"
+            parameter defined in <relref section="3.1.6"
             target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
           <t>If the cursor value is unknown, i.e. the key does not exist,
             a "404 Not Found" status-line MUST be returned with the error-type
             value "application" and error-tag value "invalid-value", and SHOULD
             also include the "cursor-not-found" identity as error-app-tag
             value.</t>
+          <t>If the "cursor" query parameter is not supported on the target
+            node, then a a "501 Not Implemented" status-line MUST be returned
+            with error-type value "application" and error-tag value
+            "operation-not-supported".</t>
         </section>
 
         <section title='The "direction" Query Parameter'>
           <t>The "direction" query parameter corresponds to the "direction"
-            parameter defined in <relref section="3.1.3"
+            parameter defined in <relref section="3.1.4"
             target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
           <t>If the direction value is invalid, then a "400 Bad Request"
             status-line MUST be returned with the error-type value
@@ -250,7 +264,17 @@
           <t>If the specified node identifier is invalid, then a "400 Bad
             Request" status-line MUST be returned with the error-type value
             "application" and error-tag value "invalid-value".</t>
+        </section>
 
+        <section title='The "sort-locale-collate" Query Parameter'>
+          <t>The "sort-locale-collate" query parameter corresponds to the
+            "sort-locale-collate" parameter defined in <relref section="3.1.3"
+            target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
+          <t>If the specified node identifier is invalid, i.e. the locale is
+            unknown to the server, then a "501 Not Implemented" status-line
+            MUST be returned with the error-type value "application" and
+            error-tag value "invalid-value", and SHOULD also include the
+            "locale-unavailable" identity in as the error-app-tag value.</t>
         </section>
 
         <section title='The "where" Query Parameter'>
@@ -260,6 +284,17 @@
           <t>If the specified XPath expression is invalid, then a "400 Bad
             Request" status-line MUST be returned with the error-type value
             "application" and error-tag value "invalid-value".</t>
+        </section>
+
+        <section title='The "snapshot" Query Parameter'>
+          <t>The "snapshot" query parameter corresponds to the "snapshot"
+            parameter defined in <relref section="3.1.8"
+            target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
+          <t>If the target node does not support snapshots, then a "501 Not
+            Implemented" status-line MUST be returned with the error-type value
+            "application" and error-tag value "invalid-value", and SHOULD
+            also include the "snapshot-not-supported" identity as error-app-tag
+            value.</t>
         </section>
 
         <section title='The "sublist-limit" Query Parameter'>
@@ -290,13 +325,15 @@
             <artwork><![CDATA[
 Index           Capability Identifier
 ---------------------------------------------------------------------
-:limit          urn:ietf:params:restconf:capability:limit:1.0
-:offset         urn:ietf:params:restconf:capability:offset:1.0
-:cursor         urn:ietf:params:restconf:capability:cursor:1.0
-:direction      urn:ietf:params:restconf:capability:direction:1.0
-:sort-by        urn:ietf:params:restconf:capability:sort-by:1.0
-:where          urn:ietf:params:restconf:capability:where:1.0
-:sublist-limit  urn:ietf:params:restconf:capability:sublist-limit:1.0
+:limit               urn:ietf:params:restconf:capability:limit:1.0
+:offset              urn:ietf:params:restconf:capability:offset:1.0
+:cursor              urn:ietf:params:restconf:capability:cursor:1.0
+:direction           urn:ietf:params:restconf:capability:direction:1.0
+:sort-by             urn:ietf:params:restconf:capability:sort-by:1.0
+:sort-locale-collate urn:ietf:params:restconf:capability:sort-locale-collate:1.0
+:where               urn:ietf:params:restconf:capability:where:1.0
+:snapshot            urn:ietf:params:restconf:capability:snapshot:1.0
+:sublist-limit       urn:ietf:params:restconf:capability:sublist-limit:1.0
 ]]></artwork>
           </figure>
         </t>
