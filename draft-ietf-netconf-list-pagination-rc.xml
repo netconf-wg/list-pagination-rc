@@ -137,8 +137,7 @@
       <section title="Query Parameters">
         <t>This document extends <relref section="4.8" target="RFC8040" relative="#FIXME"/>
           to add new query parameters "limit", "offset", "cursor", "direction",
-          "sort-by", "sort-locale-collate", "where", "snapshot", and
-          "sublist-list".</t>
+          "sort-by", "sort-locale-collate", "where", and "sublist-list".</t>
         <t>These six query parameters correspond to those defined in
           Sections 3.1 and 3.2 in <xref target="I-D.ietf-netconf-list-pagination"/>.</t>
         <t>
@@ -183,10 +182,6 @@
 |                     | HEAD    | result set entries must match.  If      |
 |                     |         | not specified, then no entries are      |
 |                     |         | filtered from the result set.           |
-|                     |         |                                         |
-| snapshot            | GET,    | Indicates that the server should take a |
-|                     | HEAD    | snapshot before paginating the result   |
-|                     |         | set.                                    |
 |                     |         |                                         |
 | sublist-            | GET,    | Limits the number of entries returned   |
 |  limit              | HEAD    | returned for descendent lists and       |
@@ -286,17 +281,6 @@
             "application" and error-tag value "invalid-value".</t>
         </section>
 
-        <section title='The "snapshot" Query Parameter'>
-          <t>The "snapshot" query parameter corresponds to the "snapshot"
-            parameter defined in <relref section="3.1.8"
-            target="I-D.ietf-netconf-list-pagination" relative="#FIXME"/>.</t>
-          <t>If the target node does not support snapshots, then a "501 Not
-            Implemented" status-line MUST be returned with the error-type value
-            "application" and error-tag value "invalid-value", and SHOULD
-            also include the "snapshot-not-supported" identity as error-app-tag
-            value.</t>
-        </section>
-
         <section title='The "sublist-limit" Query Parameter'>
           <t>The "sublist-limit" query parameter corresponds to the
             "sublist-limit" parameter defined in <relref section="3.2.1"
@@ -332,7 +316,6 @@ Index           Capability Identifier
 :sort-by             urn:ietf:params:restconf:capability:sort-by:1.0
 :sort-locale-collate urn:ietf:params:restconf:capability:sort-locale-collate:1.0
 :where               urn:ietf:params:restconf:capability:where:1.0
-:snapshot            urn:ietf:params:restconf:capability:snapshot:1.0
 :sublist-limit       urn:ietf:params:restconf:capability:sublist-limit:1.0
 ]]></artwork>
           </figure>
