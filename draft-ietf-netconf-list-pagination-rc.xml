@@ -35,18 +35,11 @@
     <author fullname="Qin Wu" initials="Q." surname="Wu">
       <organization>Huawei Technologies</organization>
       <address>
-        <postal>
-          <street>101 Software Avenue, Yuhua District</street>
-          <city>Nanjing</city>
-          <region>Jiangsu</region>
-          <code>210012</code>
-          <country>China</country>
-        </postal>
         <email>bill.wu@huawei.com</email>
       </address>
     </author>
     <author fullname="Olof Hagsand" initials="O." surname="Hagsand">
-      <organization>Netgate</organization>
+      <organization>SUNET</organization>
       <address>
         <email>olof@hagsand.se</email>
       </address>
@@ -430,6 +423,7 @@ Index           Capability Identifier
       <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-restconf-collection.xml"/>
       <?rfc include="reference.RFC.4855.xml"?>
       <?rfc include="reference.RFC.6838.xml"?>
+      <?rfc include="reference.RFC.7950.xml"?>
       <!--<?rfc include="reference.RFC.8341.xml"?>
       <?rfc include="reference.RFC.8446.xml"?>-->
       <!-- <?rfc include="reference.RFC.8340.xml"?> Tree Diagrams -->
