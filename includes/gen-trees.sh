@@ -30,9 +30,9 @@ echo "Generating tree diagrams...(DISABLED)"
 #
 #extract_grouping encrypted-by-choice-grouping
 #extract_grouping asymmetric-key-certificate-ref-grouping
-#extract_grouping local-or-keystore-symmetric-key-grouping
-#extract_grouping local-or-keystore-asymmetric-key-grouping
-#extract_grouping local-or-keystore-asymmetric-key-with-certs-grouping
-#extract_grouping local-or-keystore-end-entity-cert-with-key-grouping
+#extract_grouping inline-or-keystore-symmetric-key-grouping
+#extract_grouping inline-or-keystore-asymmetric-key-grouping
+#extract_grouping inline-or-keystore-asymmetric-key-with-certs-grouping
+#extract_grouping inline-or-keystore-end-entity-cert-with-key-grouping
 #extract_grouping keystore-grouping
 #
