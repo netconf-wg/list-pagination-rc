@@ -131,58 +131,58 @@
       <section title="Query Parameters">
         <t>This document extends <relref section="4.8" target="RFC8040"/>
           to add new query parameters "limit", "offset", "cursor", "direction",
-          "sort-by", "sort-locale-collate", "where", and "sublist-list".</t>
+          "sort-by", "locale", "where", and "sublist-list".</t>
         <t>These six query parameters correspond to those defined in
           Sections 3.1 and 3.2 in <xref target="I-D.ietf-netconf-list-pagination"/>.</t>
         <t>
           <figure>
             <artwork><![CDATA[
-+---------------------+---------+-----------------------------------------+
-| Name                | Methods | Description                             |
-+---------------------+---------+-----------------------------------------+
-| limit               | GET,    | Limits the number of entries returned.  |
-|                     | HEAD    | If not specified, the number of entries |
-|                     |         | that may be returned is unbounded.      |
-|                     |         |                                         |
-| offset              | GET,    | Indicates the number of entries in the  |
-|                     | HEAD    | result set that should the skipped over |
-|                     |         | when preparing the response.  If not    |
-|                     |         | specified, then no entries in the       |
-|                     |         | result set are skipped.                 |
-|                     |         |                                         |
-| cursor              | GET,    | Indicates where to start the working    |
-|                     | HEAD    | result set, the previous entries are    |
-|                     |         | skipped over.  If not specified, then   |
-|                     |         | no entries in the result set are        |
-|                     |         | skipped over.                           |
-|                     |         |                                         |
-| direction           | GET,    | Indicates the direction that the result |
-|                     | HEAD    | set is to be traversed.  If not         |
-|                     |         | specified, then the result set is       |
-|                     |         | traversed in the "forwards" direction.  |
-|                     |         |                                         |
-| sort-by             | GET,    | Indicates the node name that the result |
-|                     | HEAD    | set should be sorted by.  If not        |
-|                     |         | specified, then the result set's        |
-|                     |         | default order is used, per YANG's       |
-|                     |         | "ordered-by" statement.                 |
-|                     |         |                                         |
-| sort-locale-collate | GET,    | Specifies the locale the server should  |
-|                     | HEAD    | use when collating the result set. If   |
-|                     |         | not specified, the server chooses what  |
-|                     |         | locale is used for collation.           |
-|                     |         |                                         |
-| where               | GET,    | Specifies a filter expression that      |
-|                     | HEAD    | result set entries must match.  If      |
-|                     |         | not specified, then no entries are      |
-|                     |         | filtered from the result set.           |
-|                     |         |                                         |
-| sublist-            | GET,    | Limits the number of entries returned   |
-|  limit              | HEAD    | returned for descendent lists and       |
-|                     |         | leaf-lists. If not specified, the       |
-|                     |         | number of entries that may be returned  |
-|                     |         | is unbounded.                           |
-+---------------------+---------+-----------------------------------------+
++---------------+---------+-----------------------------------------+
+| Name          | Methods | Description                             |
++---------------+---------+-----------------------------------------+
+| limit         | GET,    | Limits the number of entries returned.  |
+|               | HEAD    | If not specified, the number of entries |
+|               |         | that may be returned is unbounded.      |
+|               |         |                                         |
+| offset        | GET,    | Indicates the number of entries in the  |
+|               | HEAD    | result set that should the skipped over |
+|               |         | when preparing the response.  If not    |
+|               |         | specified, then no entries in the       |
+|               |         | result set are skipped.                 |
+|               |         |                                         |
+| cursor        | GET,    | Indicates where to start the working    |
+|               | HEAD    | result set, the previous entries are    |
+|               |         | skipped over.  If not specified, then   |
+|               |         | no entries in the result set are        |
+|               |         | skipped over.                           |
+|               |         |                                         |
+| direction     | GET,    | Indicates the direction that the result |
+|               | HEAD    | set is to be traversed.  If not         |
+|               |         | specified, then the result set is       |
+|               |         | traversed in the "forwards" direction.  |
+|               |         |                                         |
+| sort-by       | GET,    | Indicates the node name that the result |
+|               | HEAD    | set should be sorted by.  If not        |
+|               |         | specified, then the result set's        |
+|               |         | default order is used, per YANG's       |
+|               |         | "ordered-by" statement.                 |
+|               |         |                                         |
+| locale        | GET,    | Specifies the locale the server should  |
+|               | HEAD    | use when collating the result set. If   |
+|               |         | not specified, the server chooses what  |
+|               |         | locale is used for collation.           |
+|               |         |                                         |
+| where         | GET,    | Specifies a filter expression that      |
+|               | HEAD    | result set entries must match.  If      |
+|               |         | not specified, then no entries are      |
+|               |         | filtered from the result set.           |
+|               |         |                                         |
+| sublist-limit | GET,    | Limits the number of entries returned   |
+|               | HEAD    | returned for descendent lists and       |
+|               |         | leaf-lists. If not specified, the       |
+|               |         | number of entries that may be returned  |
+|               |         | is unbounded.                           |
++---------------+---------+-----------------------------------------+
 ]]></artwork>
           </figure>
         </t>
@@ -195,7 +195,8 @@
           target="I-D.ietf-netconf-list-pagination"/>,
           all of these parameters MUST be supported for all lists and
           leaf-lists, but servers MAY disable the support for some or all
-          "config false" lists, as described in <relref section="3.3" target="I-D.ietf-netconf-list-pagination"/>.</t>
+          "config false" lists, as described in <relref section="3.3"
+          target="I-D.ietf-netconf-list-pagination"/>.</t>
 
 
         <section title='The "limit" Query Parameter'>
@@ -255,9 +256,9 @@
             "application" and error-tag value "invalid-value".</t>
         </section>
 
-        <section title='The "sort-locale-collate" Query Parameter'>
-          <t>The "sort-locale-collate" query parameter corresponds to the
-            "sort-locale-collate" parameter defined in <relref section="3.1.3"
+        <section title='The "locale" Query Parameter'>
+          <t>The "locale" query parameter corresponds to the
+            "locale" parameter defined in <relref section="3.1.3"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
           <t>If the specified node identifier is invalid, i.e. the locale is
             unknown to the server, then a "501 Not Implemented" status-line
@@ -301,16 +302,16 @@
         <t>
           <figure>
             <artwork><![CDATA[
-Index           Capability Identifier
----------------------------------------------------------------------
-:limit               urn:ietf:params:restconf:capability:limit:1.0
-:offset              urn:ietf:params:restconf:capability:offset:1.0
-:cursor              urn:ietf:params:restconf:capability:cursor:1.0
-:direction           urn:ietf:params:restconf:capability:direction:1.0
-:sort-by             urn:ietf:params:restconf:capability:sort-by:1.0
-:sort-locale-collate urn:ietf:params:restconf:capability:sort-locale-collate:1.0
-:where               urn:ietf:params:restconf:capability:where:1.0
-:sublist-limit       urn:ietf:params:restconf:capability:sublist-limit:1.0
+Index          Capability Identifier
+--------------------------------------------------------------------
+:limit         urn:ietf:params:restconf:capability:limit:1.0
+:offset        urn:ietf:params:restconf:capability:offset:1.0
+:cursor        urn:ietf:params:restconf:capability:cursor:1.0
+:direction     urn:ietf:params:restconf:capability:direction:1.0
+:sort-by       urn:ietf:params:restconf:capability:sort-by:1.0
+:locale        urn:ietf:params:restconf:capability:locale:1.0
+:where         urn:ietf:params:restconf:capability:where:1.0
+:sublist-limit urn:ietf:params:restconf:capability:sublist-limit:1.0
 ]]></artwork>
           </figure>
         </t>
