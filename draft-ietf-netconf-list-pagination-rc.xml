@@ -271,6 +271,7 @@
           <t>The "where" query parameter corresponds to the "where"
             parameter defined in <relref section="3.1.1"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
+          <t>Prefixes in the XPath expression MUST be YANG module names.</t>
           <t>If the specified XPath expression is invalid, then a "400 Bad
             Request" status-line MUST be returned with the error-type value
             "application" and error-tag value "invalid-value".</t>
