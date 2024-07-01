@@ -454,19 +454,6 @@ INSERT_TEXT_FROM_FILE(includes/ex-api-delete-rpc-reply.xml)
 ]]></artwork></figure>
         </t>
       </section>
-      <section title='Limit query parameter invalid value'>
-        <t>This example illustrates protocol specific responses for
-          invalid value input to the "limit" query parameter.
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-limit-0-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-limit-0-reply.xml)
-]]></artwork></figure>
-      </t>
-      </section>
     </section> <!-- Example Queries -->
 
     <!--
