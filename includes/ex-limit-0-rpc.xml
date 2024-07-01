@@ -1,0 +1,3 @@
+GET /restconf/ds/ietf-datastores:running/example-social:members/member?limit=0 HTTP/1.1
+Host: example.com
+Accept: application/yang-data+xml-list
