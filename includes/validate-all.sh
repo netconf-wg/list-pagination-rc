@@ -29,7 +29,9 @@ DATE=`date +%Y-%m-%d`
 #                - note that the example in the -nc draft also use the "xml-list" media-type - why?
 #                    - should the "xml-list" be defined in a neutral document?
 printf "Testing ex-api-combo-rpc-reply.xml..."
-command="yanglint -t reply ../../list-pagination/includes/example-social@$DATE.yang ex-api-combo-rpc-reply.xml"
+tail -n+7 ex-api-combo-rpc-reply.xml > ex-api-combo-rpc-reply.xmlonly.xml
+command="yanglint -t reply ../../list-pagination/ietf-list-pagination@$DATE.yang ../../list-pagination/includes/example-social@$DATE.yang ex-api-combo-rpc-reply.xmlonly.xml"
 run_unix_cmd $LINENO "$command" 0
+rm -f ex-api-combo-rpc-reply.xmlonly.xml
 printf "okay.\n"
  
