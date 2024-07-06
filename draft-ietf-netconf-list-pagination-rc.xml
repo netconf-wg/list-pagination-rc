@@ -424,15 +424,27 @@ Index          Capability Identifier
     <section title="Example Queries">
       <section title='List pagination with all query parameters'>
         <t>This example mimics that <relref section="A.3.9" target="I-D.ietf-netconf-list-pagination"/>.
+           This example is presented twice, once using XML and again using JSON.</t>
+        <t>XML:
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.xml)
 ]]></artwork></figure>
-      </t>
+        </t>
         <t>Response from the RESTCONF server:
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc-reply.xml)
 ]]></artwork></figure>
-      </t>
+        </t>
+        <t>JSON:
+          <figure><artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.json)
+]]></artwork></figure>
+        </t>
+        <t>Response from the RESTCONF server:
+          <figure><artwork><![CDATA[
+INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc-reply.json)
+]]></artwork></figure>
+        </t>
       </section>
       <section title='Deletion of a leaf-list'>
         <t>This example illustrates using a "leaf-list" as the DELETE target.
