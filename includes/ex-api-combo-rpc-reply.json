@@ -16,6 +16,7 @@ Content-Type: application/yang-data+json
       "password": "$0$1543",
       "avatar": "BASE64VALUE=",
       "tagline": "Go to bed with dreams; wake up with purpose.",
+      "following": ["alice"],
       "posts": {
         "post": [
           {
