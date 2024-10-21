@@ -47,6 +47,7 @@
       <address>
         <email>per.ietf@ionio.se</email>
       </address>
+    </author>
     <author fullname="Olof Hagsand" initials="O." surname="Hagsand">
       <organization>SUNET</organization>
       <address>
@@ -58,7 +59,6 @@
       <address>
         <email>flycoolman@gmail.com</email>
       </address>
-    </author>
     </author>
 
     <date/>
