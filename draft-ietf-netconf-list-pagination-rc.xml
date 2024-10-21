@@ -42,6 +42,11 @@
         <email>bill.wu@huawei.com</email>
       </address>
     </author>
+    <author fullname="Per Andersson" initials="P." surname="Andersson">
+      <organization>Cisco Systems</organization>
+      <address>
+        <email>per.ietf@ionio.se</email>
+      </address>
     <author fullname="Olof Hagsand" initials="O." surname="Hagsand">
       <organization>SUNET</organization>
       <address>
@@ -54,11 +59,6 @@
         <email>flycoolman@gmail.com</email>
       </address>
     </author>
-    <author fullname="Per Andersson" initials="P." surname="Andersson">
-      <organization>Cisco Systems</organization>
-      <address>
-        <email>per.ietf@ionio.se</email>
-      </address>
     </author>
 
     <date/>
