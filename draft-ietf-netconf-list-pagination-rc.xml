@@ -269,6 +269,9 @@
             MUST be returned with the error-type value "application" and
             error-tag value "invalid-value", and SHOULD also include the
             "locale-unavailable" identity in as the error-app-tag value.</t>
+          <t>If "locale" is supplied but not "sort-by", a "400 Bad Request"
+            status-line MUST be return with the error-type "application" and
+            error-tag value "invalid-value".</t>
         </section>
 
         <section title='The "where" Query Parameter'>
