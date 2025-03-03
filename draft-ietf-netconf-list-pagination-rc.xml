@@ -208,14 +208,10 @@
           <t>The "limit" query parameter corresponds to the "limit"
             parameter defined in <relref section="3.1.7"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
-          <t>If the limit value is invalid, then a "400 Bad Request"
-            status-line MUST be returned with the error-type value
-            "application" and error-tag value "invalid-value".</t>
-          <t>If the limit value is out of range (i.e. greater than the number
-            of instances in the working result-set), then a "400 Bad Request"
-            status-line MUST be returned with the error-type value
-            "application", error-tag value "invalid-value", and "error-app-tag"
-            value "offset-out-of-range".</t>
+          <t>If the limit value is invalid, i.e. not an unsigned 32 bit integer
+            greater than or equal to 1 or the string "unbounded", then a
+            "400 Bad Request" status-line MUST be returned with the error-type
+            value "application" and error-tag value "invalid-value".</t>
         </section>
 
         <section title='The "offset" Query Parameter'>
