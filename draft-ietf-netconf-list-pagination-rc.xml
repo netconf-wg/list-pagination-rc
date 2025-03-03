@@ -197,8 +197,9 @@
           value "operation-not-supported" is used in this case.</t>
         <t>Per the conformance defined in <relref section="3.1"
           target="I-D.ietf-netconf-list-pagination"/>,
-          all of these parameters MUST be supported for all lists and
-          leaf-lists, but servers MAY disable the support for some or all
+          all of these parameters MUST be supported for all "config true" lists
+          and leaf-lists, and SHOULD be supported for "config false" lists and
+          leaf-lists. A server MAY disable the support for some or all
           "config false" lists, as described in <relref section="3.3"
           target="I-D.ietf-netconf-list-pagination"/>.</t>
 
