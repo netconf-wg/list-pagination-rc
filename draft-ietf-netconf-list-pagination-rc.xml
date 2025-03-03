@@ -228,7 +228,7 @@
         </section>
 
         <section title='The "cursor" Query Parameter'>
-          <t>The "cursor" querey parameter corresponds to the "cursor"
+          <t>The "cursor" query parameter corresponds to the "cursor"
             parameter defined in <relref section="3.1.6"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
           <t>If the cursor value is unknown, i.e. the key does not exist,
@@ -288,7 +288,7 @@
           <t>The "sublist-limit" query parameter corresponds to the
             "sublist-limit" parameter defined in <relref section="3.2.1"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
-          <t>If the sumlist-limit value is invalid, then a "400 Bad Request"
+          <t>If the sublist-limit value is invalid, then a "400 Bad Request"
             status-line MUST be returned with the error-type value
             "application" and error-tag value "invalid-value".</t>
         </section>
