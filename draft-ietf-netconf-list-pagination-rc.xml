@@ -70,8 +70,8 @@
         defined in <xref target="I-D.ietf-netconf-list-pagination"/>
         to RESTCONF <xref target="RFC8040"/>.</t>
       <t>This document updates RFC 8040, to declare "list" and "leaf-list" as
-        valid resource targets for the RESTCONF GET and DELETE
-        operations, to define GET query parameters necessary
+        valid resource targets for the RESTCONF GET
+        operation, to define GET query parameters necessary
         for list pagination, and to define a media-type for
         XML-based lists.</t>
     </abstract>
@@ -86,9 +86,7 @@
       <t>This document updates RFC 8040, as described in <xref target="updates"/>.</t>
 
       <t>Declaring "list" and "leaf-list" as valid resource targets
-        for the GET operation is necessary for list pagination.  Declaring
-        these nodes as valid resource targets for the DELETE operation 
-        merely completes the solution for RESTCONF.</t>
+        for the GET operation is necessary for list pagination.</t>
 
       <section title="Terminology">
         <t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
@@ -113,7 +111,7 @@
       <section title="Resource Targets">
         <t>This document extends <relref section="3.5" target="RFC8040"/>
           to add "list" and "leaf-list" nodes (not just their entries)
-          as valid data resources for the "GET" and "DELETE" operations.</t>
+          as valid data resources for the "GET" operation.</t>
       </section>
 
       <section title="Media Type">
@@ -448,18 +446,6 @@ INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.json)
         <t>Response from the RESTCONF server:
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc-reply.json)
-]]></artwork></figure>
-        </t>
-      </section>
-      <section title='Deletion of a leaf-list'>
-        <t>This example illustrates using a "leaf-list" as the DELETE target.
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-delete-rpc.xml)
-]]></artwork></figure>
-      </t>
-        <t>Response from the RESTCONF server:
-          <figure><artwork><![CDATA[
-INSERT_TEXT_FROM_FILE(includes/ex-api-delete-rpc-reply.xml)
 ]]></artwork></figure>
         </t>
       </section>
