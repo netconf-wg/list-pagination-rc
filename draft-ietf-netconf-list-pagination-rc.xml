@@ -133,9 +133,12 @@
       <section title="Query Parameters">
         <t>This document extends <relref section="4.8" target="RFC8040"/>
           to add new query parameters "limit", "offset", "cursor", "direction",
-          "sort-by", "locale", "where", and "sublist-list".</t>
-        <t>These six query parameters correspond to those defined in
+          "sort-by", "locale", "where", and "sublist-limitt".</t>
+        <t>These eight query parameters correspond to those defined in
           Sections 3.1 and 3.2 in <xref target="I-D.ietf-netconf-list-pagination"/>.</t>
+        <t>Note that complex pagination with combination of query parameters may
+          cause performance strain on constrained devices due to intensive
+          processing on both the server and the client.</t>
         <t>
           <figure>
             <artwork><![CDATA[
@@ -147,7 +150,7 @@
 |               |         | that may be returned is unbounded.      |
 |               |         |                                         |
 | offset        | GET,    | Indicates the number of entries in the  |
-|               | HEAD    | result set that should the skipped over |
+|               | HEAD    | result set that should be skipped over  |
 |               |         | when preparing the response.  If not    |
 |               |         | specified, then no entries in the       |
 |               |         | result set are skipped.                 |
@@ -206,7 +209,7 @@
           <t>The "limit" query parameter corresponds to the "limit"
             parameter defined in <relref section="3.1.7"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
-          <t>If the limit value is invalid, i.e. not an unsigned 32 bit integer
+          <t>If the limit value is invalid, i.e. not an unsigned 32-bit integer
             greater than or equal to 1 or the string "unbounded", then a
             "400 Bad Request" status-line MUST be returned with the error-type
             value "application" and error-tag value "invalid-value".</t>
@@ -223,21 +226,25 @@
             working result set, then a "416 Range Not Satisfiable"
             status-line MUST be returned with the error-type value
             "application", error-tag value "invalid-value", and SHOULD also
-            include the "offset-out-of-range" identity as error-app-tag
+            include the "offset-out-of-range" identity as the error-app-tag
             value.</t>
         </section>
 
         <section title='The "cursor" Query Parameter'>
           <t>The "cursor" query parameter corresponds to the "cursor"
             parameter defined in <relref section="3.1.6"
-            target="I-D.ietf-netconf-list-pagination"/>.</t>
+            target="I-D.ietf-netconf-list-pagination"/>. As described in
+            <relref section="3.1.5" target="I-D.ietf-netconf-list-pagination"/>
+            the server does not keep any stateful information about the "next"
+            and "previous" cursor or the current page. Due to their ephemeral
+            nature, cursor values are never cached.</t>
           <t>If the cursor value is unknown, i.e. the key does not exist,
             a "404 Not Found" status-line MUST be returned with the error-type
             value "application" and error-tag value "invalid-value", and SHOULD
-            also include the "cursor-not-found" identity as error-app-tag
+            also include the "cursor-not-found" identity as the error-app-tag
             value.</t>
           <t>If the "cursor" query parameter is not supported on the target
-            node, then a a "501 Not Implemented" status-line MUST be returned
+            node, then a "501 Not Implemented" status-line MUST be returned
             with error-type value "application" and error-tag value
             "operation-not-supported".</t>
         </section>
@@ -268,9 +275,9 @@
             unknown to the server, then a "501 Not Implemented" status-line
             MUST be returned with the error-type value "application" and
             error-tag value "invalid-value", and SHOULD also include the
-            "locale-unavailable" identity in as the error-app-tag value.</t>
+            "locale-unavailable" identity as the error-app-tag value.</t>
           <t>If "locale" is supplied but not "sort-by", a "400 Bad Request"
-            status-line MUST be return with the error-type "application" and
+            status-line MUST be returned with the error-type "application" and
             error-tag value "invalid-value".</t>
         </section>
 
@@ -305,7 +312,7 @@
           Following the instructions defined in <relref section="11.4" target="RFC8040"/>,
           the below registrations are requested:</t>
 
-        <t>All the registrations are to use this document (RFC XXXX)
+        <t>All registrations are to use this document (RFC XXXX)
           for the "Reference" value.</t>
         <t>
           <figure>
