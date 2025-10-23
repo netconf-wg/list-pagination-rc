@@ -133,7 +133,7 @@
       <section title="Query Parameters">
         <t>This document extends <relref section="4.8" target="RFC8040"/>
           to add new query parameters "limit", "offset", "cursor", "direction",
-          "sort-by", "locale", "where", and "sublist-limitt".</t>
+          "sort-by", "locale", "where", and "sublist-limit".</t>
         <t>These eight query parameters correspond to those defined in
           Sections 3.1 and 3.2 in <xref target="I-D.ietf-netconf-list-pagination"/>.</t>
         <t>Note that complex pagination with combination of query parameters may
