@@ -121,7 +121,7 @@
         <t>The "application/yang-data+xml-list" media-type defines a
           pseudo top-level element called "xml-list" that is used to
           wrap the response set, thus ensuring that a single top-level
-          element is returned for the XML encoding", as required by <relref
+          element is returned for the XML encoding, as required by <relref
           section="4.3" target="RFC8040"/>.</t>
         <t>For JSON, the existing "application/yang-data+json" media type is
           sufficient, as the JSON format has built-in support for encoding
