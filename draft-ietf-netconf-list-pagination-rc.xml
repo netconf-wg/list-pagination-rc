@@ -183,7 +183,7 @@
 |               |         | filtered from the result set.           |
 |               |         |                                         |
 | sublist-limit | GET,    | Limits the number of entries returned   |
-|               | HEAD    | returned for descendent lists and       |
+|               | HEAD    | returned for descendant lists and       |
 |               |         | leaf-lists. If not specified, the       |
 |               |         | number of entries that may be returned  |
 |               |         | is unbounded.                           |
