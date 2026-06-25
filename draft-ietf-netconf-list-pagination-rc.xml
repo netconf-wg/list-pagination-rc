@@ -278,7 +278,7 @@
             "sublist-limit" parameter defined in <relref section="3.2.1"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
           <t>If the sublist-limit value is invalid, then a "400 Bad Request"
-            status-line MUST be returnedi.</t>
+            status-line MUST be returned.</t>
         </section>
       </section>
     </section> <!-- Updates to RFC 8040 -->
