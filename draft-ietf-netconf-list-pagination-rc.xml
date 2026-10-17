@@ -287,7 +287,7 @@
     <section title="IANA Considerations">
 
       <section title='The "RESTCONF Capability URNs" Registry'>
-        <t>This document registers eight capabilities in the RESTCONF
+        <t>This document registers six capabilities in the RESTCONF
           Capability URNs <xref target="RFC8040"/> maintained at
           <eref target="https://www.iana.org/assignments/restconf-capability-urns/restconf-capability-urns.xhtml"/>.
           Following the instructions defined in <relref section="11.4" target="RFC8040"/>,
@@ -350,7 +350,7 @@ Index          Capability Identifier
 
    Applications that use this media type: Instance document data
       parsers used within a protocol or automation tool that
-      utilize the YANG data structure.
+      utilize the YANG Patch data structure.
 
    Fragment identifier considerations: Fragment identifiers for
       this type are not defined.  All YANG data nodes are
