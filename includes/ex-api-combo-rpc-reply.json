@@ -21,7 +21,6 @@ Content-Type: application/yang-data+json
         "post": [
           {
             "@": {
-              "ietf-list-pagination:remaining": 2,
               "ietf-list-pagination:locale": "en_US"
             },
             "timestamp": "2020-09-17T18:02:04Z",
@@ -44,7 +43,13 @@ Content-Type: application/yang-data+json
         "membership-level": "pro",
         "last-activity": "2020-09-17T18:02:04Z"
       }
-    },
+    }],
+  "example-social:member": [
+    {
+      "@": {
+        "ietf-list-pagination:remaining": 1,
+        "ietf-list-pagination:locale": "en_US"
+      },
     {
       "member-id": "bob",
       "email-address": "bob@example.com",
