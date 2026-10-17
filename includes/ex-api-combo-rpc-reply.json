@@ -9,7 +9,7 @@ Content-Type: application/yang-data+json
     {
       "@": {
         "ietf-list-pagination:remaining": 1,
-        "ietf-list-pagination:locale": "en_US"
+        "ietf-list-pagination:locale": "en-US"
       },
       "member-id": "eric",
       "email-address": "eric@example.com",
@@ -21,7 +21,7 @@ Content-Type: application/yang-data+json
         "post": [
           {
             "@": {
-              "ietf-list-pagination:locale": "en_US"
+              "ietf-list-pagination:locale": "en-US"
             },
             "timestamp": "2020-09-17T18:02:04Z",
             "title": "Son, brother, husband, father",
@@ -34,7 +34,7 @@ Content-Type: application/yang-data+json
         "@example-social:bits": [
           {
             "ietf-list-pagination:remaining": 2,
-            "ietf-list-pagination:locale": "en_US"
+            "ietf-list-pagination:locale": "en-US"
           }
         ]
       },
@@ -48,7 +48,7 @@ Content-Type: application/yang-data+json
     {
       "@": {
         "ietf-list-pagination:remaining": 1,
-        "ietf-list-pagination:locale": "en_US"
+        "ietf-list-pagination:locale": "en-US"
       },
     {
       "member-id": "bob",
@@ -61,7 +61,7 @@ Content-Type: application/yang-data+json
           {
             "@": {
               "ietf-list-pagination:remaining": 2,
-              "ietf-list-pagination:locale": "en_US"
+              "ietf-list-pagination:locale": "en-US"
             },
             "timestamp": "2020-08-14T03:32:25Z",
             "body": "Just got in."
@@ -73,7 +73,7 @@ Content-Type: application/yang-data+json
         "@example-social:decimal64-numbers": [
           {
             "ietf-list-pagination:remaining": 1,
-            "ietf-list-pagination:locale": "en_US"
+            "ietf-list-pagination:locale": "en-US"
           }
         ]
       },
