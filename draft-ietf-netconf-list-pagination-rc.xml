@@ -385,7 +385,9 @@ Index          Capability Identifier
     <section anchor="security" title="Security Considerations">
       <t>This document introduces protocol operations for paging
         through data already provided by the RESTCONF protocol, and
-        hence does not introduce any new security considerations.</t>
+        hence does not introduce any new security considerations
+        beyond those already discussed in
+        <xref target="I-D.ietf-netconf-list-pagination"/>.</t>
       <t>This document does not define a YANG module and hence there
         are no data modeling considerations beyond those discussed in
         <xref target="I-D.ietf-netconf-list-pagination"/>.</t>
