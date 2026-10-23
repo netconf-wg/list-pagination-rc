@@ -116,9 +116,9 @@
 
       <section title="Media Type">
         <t>This document extends <relref section="3.2" target="RFC8040"/>
-          to add a new media type, "application/yang-data-list+[xml/json]", to
+          to add a new media type, "application/yang-data-list+xml", to
           encode "list" and "leaf-list" nodes in XML.</t>
-        <t>The "application/yang-data-list+[xml/json]" media-type defines a
+        <t>The "application/yang-data-list+xml" media-type defines a
           pseudo top-level element called "xml-list" that is used to
           wrap the response set, thus ensuring that a single top-level
           element is returned for the XML encoding, as required by <relref
@@ -126,7 +126,7 @@
         <t>For JSON, the existing "application/yang-data+json" media type is
           sufficient, as the JSON format has built-in support for encoding
           arrays.</t>
-        <t>The "application/yang-data-list+[xml/json]" media type is registered
+        <t>The "application/yang-data-list+xml" media type is registered
           in <xref target="media-type"/>.</t>
       </section>
 
@@ -318,7 +318,7 @@ Index          Capability Identifier
           <xref target="RFC4855"/> maintained at <eref target="https://www.iana.org/assignments/media-types/media-types.xhtml#application"/>.
             Following the format defined in <xref target="RFC4855"/>, the below
             registration is requested:</t>
-        <section title='Media Type "application/yang-data-list+[xml/json]"' anchor="media-type">
+        <section title='Media Type "application/yang-data-list+xml"' anchor="media-type">
           <figure>
             <artwork>Type name: application
 
