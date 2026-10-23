@@ -322,7 +322,7 @@ Index          Capability Identifier
           <figure>
             <artwork>Type name: application
 
-   Subtype name: yang-data+xml-list
+   Subtype name: yang-data-list+xml
 
    Required parameters: None
 
