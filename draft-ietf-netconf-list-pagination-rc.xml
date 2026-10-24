@@ -116,9 +116,9 @@
 
       <section title="Media Type">
         <t>This document extends <relref section="3.2" target="RFC8040"/>
-          to add a new media type, "application/yang-data+xml-list", to
+          to add a new media type, "application/yang-data-list+xml", to
           encode "list" and "leaf-list" nodes in XML.</t>
-        <t>The "application/yang-data+xml-list" media-type defines a
+        <t>The "application/yang-data-list+xml" media-type defines a
           pseudo top-level element called "xml-list" that is used to
           wrap the response set, thus ensuring that a single top-level
           element is returned for the XML encoding, as required by <relref
@@ -126,7 +126,7 @@
         <t>For JSON, the existing "application/yang-data+json" media type is
           sufficient, as the JSON format has built-in support for encoding
           arrays.</t>
-        <t>The "application/yang-data+xml-list" media type is registered
+        <t>The "application/yang-data-list+xml" media type is registered
           in <xref target="media-type"/>.</t>
       </section>
 
@@ -254,9 +254,8 @@
           <t>The "locale" query parameter corresponds to the
             "locale" parameter defined in <relref section="3.1.3"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
-          <t>If the specified node identifier is invalid, i.e. the locale is
-            unknown to the server, then a "501 Not Implemented" status-line
-            MUST be returned.</t>
+          <t>If the locale is unknown to the server, then a
+             "501 Not Implemented" status-line MUST be returned.</t>
           <t>If "locale" is supplied but not "sort-by", a "400 Bad Request"
             status-line MUST be returned with the error-type "application" and
             error-tag value "invalid-value".</t>
@@ -287,7 +286,7 @@
     <section title="IANA Considerations">
 
       <section title='The "RESTCONF Capability URNs" Registry'>
-        <t>This document registers six capabilities in the RESTCONF
+        <t>This document registers eight capabilities in the RESTCONF
           Capability URNs <xref target="RFC8040"/> maintained at
           <eref target="https://www.iana.org/assignments/restconf-capability-urns/restconf-capability-urns.xhtml"/>.
           Following the instructions defined in <relref section="11.4" target="RFC8040"/>,
@@ -319,11 +318,11 @@ Index          Capability Identifier
           <xref target="RFC4855"/> maintained at <eref target="https://www.iana.org/assignments/media-types/media-types.xhtml#application"/>.
             Following the format defined in <xref target="RFC4855"/>, the below
             registration is requested:</t>
-        <section title='Media Type "application/yang-data+xml-list"' anchor="media-type">
+        <section title='Media Type "application/yang-data-list+xml"' anchor="media-type">
           <figure>
             <artwork>Type name: application
 
-   Subtype name: yang-data+xml-list
+   Subtype name: yang-data-list+xml
 
    Required parameters: None
 
@@ -350,7 +349,7 @@ Index          Capability Identifier
 
    Applications that use this media type: Instance document data
       parsers used within a protocol or automation tool that
-      utilize the YANG Patch data structure.
+      utilize the YANG data structure.
 
    Fragment identifier considerations: Fragment identifiers for
       this type are not defined.  All YANG data nodes are
@@ -385,7 +384,9 @@ Index          Capability Identifier
     <section anchor="security" title="Security Considerations">
       <t>This document introduces protocol operations for paging
         through data already provided by the RESTCONF protocol, and
-        hence does not introduce any new security considerations.</t>
+        hence does not introduce any new security considerations
+        beyond those already discussed in
+        <xref target="I-D.ietf-netconf-list-pagination"/>.</t>
       <t>This document does not define a YANG module and hence there
         are no data modeling considerations beyond those discussed in
         <xref target="I-D.ietf-netconf-list-pagination"/>.</t>
@@ -402,6 +403,7 @@ Index          Capability Identifier
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.4855.xml"/> <!-- ??? -->
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.6838.xml"/> <!-- ??? -->
       <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.7950.xml"/> <!-- ??? -->
+      <xi:include href="https://bib.ietf.org/public/rfc/bibxml/reference.RFC.8527.xml"/> <!-- ??? -->       
       <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-netconf-restconf-collection.xml"/>
       <xi:include href="https://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.zheng-netconf-fragmentation.xml"/>
     </references>
@@ -417,6 +419,8 @@ Index          Capability Identifier
       <section title='List pagination with all query parameters'>
         <t>This example mimics that <relref section="A.3.9" target="I-D.ietf-netconf-list-pagination"/>.
            This example is presented twice, once using XML and again using JSON.</t>
+        <t>In order to target the <operational> datastore, the {+restcong}/ds/ietf-datastores:operational
+            resource described by <xref target="RFC8527"/> is used.</t>
         <t>XML:
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.xml)
