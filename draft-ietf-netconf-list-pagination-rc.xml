@@ -419,9 +419,8 @@ Index          Capability Identifier
       <section title='List pagination with all query parameters'>
         <t>This example mimics that <relref section="A.3.9" target="I-D.ietf-netconf-list-pagination"/>.
            This example is presented twice, once using XML and again using JSON.</t>
-        <t>This example shows how a RESTCONF client fetches a specific chunk of list data from a
-          network device using List Pagination RESTCONF extension. The structural syntax of the URI
-          in the RESTCONF Request Message relies entirely on the architecture defined by <xref target="RFC8527"/>.</t>
+        <t>In order to target the <operational> datastore, the {+restcong}/ds/ietf-datastores:operational
+            resource described by <xref target="RFC8527"/> is used.</t>
         <t>XML:
           <figure><artwork><![CDATA[
 INSERT_TEXT_FROM_FILE(includes/ex-api-combo-rpc.xml)
