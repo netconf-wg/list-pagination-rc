@@ -216,7 +216,7 @@
             parameter defined in <relref section="3.1.5"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
           <t>If the offset value exceeds the number of entries in the
-            working result set, then a "501 Range Not Satisfiable"
+            working result set, then a "405 Range Not Satisfiable"
             status-line MUST be returned.</t>
         </section>
 
