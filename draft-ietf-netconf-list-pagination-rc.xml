@@ -216,8 +216,8 @@
             parameter defined in <relref section="3.1.5"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
           <t>If the offset value exceeds the number of entries in the
-            working result set, then a "405 Range Not Satisfiable"
-            status-line MUST be returned.</t>
+            working result set, then a "400 Bad Request" status-line with
+            error-tag "invalid-value" MUST be returned.</t>
         </section>
 
         <section title='The "cursor" Query Parameter'>
