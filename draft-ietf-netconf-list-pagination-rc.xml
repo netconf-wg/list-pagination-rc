@@ -216,8 +216,8 @@
             parameter defined in <relref section="3.1.5"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
           <t>If the offset value exceeds the number of entries in the
-            working result set, then a "416 Range Not Satisfiable"
-            status-line MUST be returned.</t>
+            working result set, then a "400 Bad Request" status-line with
+            error-tag "invalid-value" MUST be returned.</t>
         </section>
 
         <section title='The "cursor" Query Parameter'>
@@ -257,7 +257,7 @@
           <t>If the locale is unknown to the server, then a
              "501 Not Implemented" status-line MUST be returned.</t>
           <t>If "locale" is supplied but not "sort-by", a "400 Bad Request"
-            status-line MUST be returned with the error-type "application" and
+            status-line MUST be returned with the error-type "protocol" and
             error-tag value "invalid-value".</t>
         </section>
 
