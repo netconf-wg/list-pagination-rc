@@ -43,14 +43,12 @@ Content-Type: application/yang-data+json
         "membership-level": "pro",
         "last-activity": "2020-09-17T18:02:04Z"
       }
-    }],
-  "example-social:member": [
+    },
     {
       "@": {
         "ietf-list-pagination:remaining": 1,
         "ietf-list-pagination:locale": "en-US"
       },
-    {
       "member-id": "bob",
       "email-address": "bob@example.com",
       "password": "$0$1543",
