@@ -419,7 +419,7 @@ Index          Capability Identifier
       <section title='List pagination with all query parameters'>
         <t>This example mimics that <relref section="A.3.9" target="I-D.ietf-netconf-list-pagination"/>.
            This example is presented twice, once using XML and again using JSON.</t>
-        <t>In order to target the &lt;operational&gt; datastore, the {+restcong}/ds/ietf-datastores:operational
+        <t>In order to target the &lt;operational&gt; datastore, the {+restconf}/ds/ietf-datastores:operational
             resource described by <xref target="RFC8527"/> is used.</t>
         <t>XML:
           <figure><artwork><![CDATA[
