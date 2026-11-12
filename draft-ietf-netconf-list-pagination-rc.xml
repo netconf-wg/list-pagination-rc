@@ -193,9 +193,9 @@
         </t>
         <t>For all of the query parameters, the query parameter is only
           allowed for the GET and HEAD methods on "list" and "leaf-list"
-          data resources. A "400 Bad Request" status-line MUST be returned
-          if used with any other method or resource type. The error-tag
-          value "operation-not-supported" is used in this case.</t>
+          data resources. A "405 Method Not Allowed" status-line MUST be returned
+          if used with any other method or resource type. The error-tag value
+          "operation-not-supported" is used in this case</t>
         <t>Per the conformance defined in <relref section="3.1"
           target="I-D.ietf-netconf-list-pagination"/>,
           all of these parameters MUST be supported for all "config true" lists
@@ -231,7 +231,7 @@
           <t>If the cursor value is unknown, i.e. the key does not exist,
             a "404 Not Found" status-line MUST be returned.</t>
           <t>If the "cursor" query parameter is not supported on the target
-            node, then a "501 Not Implemented" status-line MUST be returned.</t>
+            node, then a "400 Bad Request" status-line MUST be returned.</t>
         </section>
 
         <section title='The "direction" Query Parameter'>
@@ -239,7 +239,8 @@
             parameter defined in <relref section="3.1.4"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
           <t>If the direction value is invalid, then a "400 Bad Request"
-            status-line MUST be returned.</t>
+            status-line MUST be returned with the error-type "protocol" and
+            error-tag value "invalid-value".</t>
         </section>
 
         <section title='The "sort-by" Query Parameter'>
@@ -247,7 +248,8 @@
             parameter defined in <relref section="3.1.2"
             target="I-D.ietf-netconf-list-pagination"/>.</t>
           <t>If the specified node identifier is invalid, then a "400 Bad
-            Request" status-line MUST be returned.</t>
+            Request" status-line MUST be returned with the error-type "protocol" and
+            error-tag value "invalid-value".</t>
         </section>
 
         <section title='The "locale" Query Parameter'>
